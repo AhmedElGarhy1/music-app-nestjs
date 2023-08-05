@@ -39,10 +39,12 @@ export class User {
   @Column('simple-json')
   auth: Auth;
 
+  // relations
   @OneToOne(() => Profile, (profile) => profile.user)
   @JoinColumn()
   profile: Profile;
 
+  // forign keys
   @Column()
   profileId: number;
 

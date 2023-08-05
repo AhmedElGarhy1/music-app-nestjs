@@ -13,7 +13,7 @@ import { MusicModule } from './modules/music/music.module';
 import { AlbumModule } from './modules/album/album.module';
 import { MusicianAlbumModule } from './modules/musician-album/musician-album.module';
 import { NotificationModule } from './modules/notification/notification.module';
-import database from './config/database';
+import { database } from './config';
 
 @Module({
   imports: [
@@ -33,4 +33,4 @@ import database from './config/database';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
