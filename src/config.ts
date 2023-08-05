@@ -9,7 +9,6 @@ export const database: TypeOrmModule = {
   password: 'elgarhy',
   database: 'music_app',
   entities: [__dirname + '/**/*.entity{.js,.ts}'],
-  // entities: ["src/modules" + '/**/*.entity.{js,ts}'],
   synchronize: true,
 };
 
