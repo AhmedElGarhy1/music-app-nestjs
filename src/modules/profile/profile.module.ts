@@ -5,4 +5,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [TypeOrmModule.forFeature([Profile])],
 })
-export class ProfileModule {}
+export class ProfileModule { }
