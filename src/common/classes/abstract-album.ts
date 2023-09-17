@@ -1,6 +1,6 @@
 import { BaseEntity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export class AbstractAlbum {
+export class AbstractAlbum extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
