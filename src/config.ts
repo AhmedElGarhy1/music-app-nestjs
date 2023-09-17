@@ -11,4 +11,3 @@ export const database: TypeOrmModule = {
   entities: [__dirname + '/**/*.entity{.js,.ts}'],
   synchronize: true,
 };
-
