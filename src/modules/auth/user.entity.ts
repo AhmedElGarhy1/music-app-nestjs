@@ -7,7 +7,7 @@ import {
   Unique,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { Role } from '../../common/enums/role.enum';
+import { RoleEnum } from '../../common/enums/role.enum';
 import { Auth } from '../../common/classes/auth';
 import { Profile } from '../profile/profile.entity';
 
@@ -31,10 +31,10 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: Role,
+    enum: RoleEnum,
     array: true,
   })
-  roles: Role[];
+  roles: RoleEnum[];
 
   @Column('simple-json')
   auth: Auth;

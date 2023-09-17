@@ -7,7 +7,7 @@ import {
   Unique,
 } from 'typeorm';
 import { User } from 'src/modules/auth/user.entity';
-import { Gender } from 'src/common/enums/gender.enum';
+import { GenderEnum } from 'src/common/enums/gender.enum';
 
 @Entity('profiles')
 @Unique(['phone'])
@@ -21,13 +21,12 @@ export class Profile {
   @Column()
   lastName: string;
 
-
   @Column({
-    type: "enum",
-    enum: Gender,
-    array: false
+    type: 'enum',
+    enum: GenderEnum,
+    array: false,
   })
-  gender: Gender;
+  gender: GenderEnum;
 
   @Column()
   age: number;

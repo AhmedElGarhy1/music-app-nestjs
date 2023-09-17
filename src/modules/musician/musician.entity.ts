@@ -1,8 +1,6 @@
-import { AbstractArtist } from "src/common/classes/abstract-artist";
-import { Entity } from "typeorm";
-
+import { AbstractArtist } from 'src/common/classes/abstract-artist';
+import { Entity, Unique } from 'typeorm';
 
 @Entity('musicians')
-export class Musician extends AbstractArtist {
-
-}
+@Unique(['name'])
+export class Musician extends AbstractArtist {}
