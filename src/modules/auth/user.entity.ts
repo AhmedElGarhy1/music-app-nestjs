@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   Entity,
   JoinColumn,
@@ -9,11 +10,11 @@ import {
 import * as bcrypt from 'bcryptjs';
 import { RoleEnum } from '../../common/enums/role.enum';
 import { Auth } from '../../common/classes/auth';
-import { Profile } from '../profile/profile.entity';
+import { Profile } from '../profiles/profile.entity';
 
 @Entity('users')
 @Unique(['username', 'email'])
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

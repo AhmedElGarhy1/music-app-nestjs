@@ -1,12 +1,18 @@
 import { AbstractAlbum } from 'src/common/classes/abstract-album';
-import { Column, Entity, ManyToOne } from 'typeorm';
-import { Singer } from '../singer/singer.entity';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Singer } from '../singers/entities/singer.entity';
+import { Song } from '../songs/song.entity';
 
-@Entity()
+@Entity('singer_album')
 export class SingerAlbum extends AbstractAlbum {
-  @ManyToOne(() => Singer, (singer) => singer.singerAlbums)
+  @ManyToOne(() => Singer, (singer) => singer.albums)
   singer: Singer;
 
   @Column()
-  singer_id: number;
+  singerId: number;
+
+  @OneToMany(() => Song, (song) => song.album, {
+    eager: true,
+  })
+  songs: Song[];
 }

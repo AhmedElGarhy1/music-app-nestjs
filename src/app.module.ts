@@ -3,32 +3,35 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './modules/auth/auth.module';
-import { ProfileModule } from './modules/profile/profile.module';
-import { SingerModule } from './modules/singer/singer.module';
-import { MusicianModule } from './modules/musician/musician.module';
-import { FavoriteModule } from './modules/favorite/favorite.module';
-import { PlaylistModule } from './modules/playlist/playlist.module';
-import { SongModule } from './modules/song/song.module';
+import { SongModule } from './modules/songs/songs.module';
 import { MusicModule } from './modules/music/music.module';
 import { SingerAlbumModule } from './modules/singer-album/singer-album.module';
-import { MusicianAlbumModule } from './modules/musician-album/musician-album.module';
-import { NotificationModule } from './modules/notification/notification.module';
 import { database } from './config';
+import { FavoritesModule } from './modules/favorites/favorites.module';
+import { MusicianAlbumsModule } from './modules/musician-albums/musician-albums.module';
+import { MusiciansModule } from './modules/musicians/musicians.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
+import { PlaylistsModule } from './modules/playlists/playlists.module';
+import { ProfilesModule } from './modules/profiles/profiles.module';
+import { TracksModule } from './modules/tracks/tracks.module';
+import { SingersModule } from './modules/singers/singers.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(database),
     AuthModule,
-    ProfileModule,
-    SingerModule,
-    MusicianModule,
-    FavoriteModule,
-    PlaylistModule,
+    ProfilesModule,
+    SingersModule,
+    MusiciansModule,
+    FavoritesModule,
+    PlaylistsModule,
     SongModule,
     MusicModule,
     SingerAlbumModule,
-    MusicianAlbumModule,
-    NotificationModule,
+    MusicianAlbumsModule,
+    NotificationsModule,
+    TracksModule,
+    AppModule,
   ],
   controllers: [AppController],
   providers: [AppService],
