@@ -5,8 +5,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Profile } from '../profiles/profile.entity';
-import { Track } from '../tracks/track.entity';
+import { Profile } from '../../profiles/entities/profile.entity';
+import { Track } from '../../tracks/track.entity';
 
 @Entity('favorite-list')
 export class Favorite extends BaseEntity {

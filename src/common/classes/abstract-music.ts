@@ -20,8 +20,8 @@ export abstract class AbstractMusic extends BaseEntity {
   @Column()
   source: string;
 
-  @Column()
-  publishedIn: Date;
+  @Column({ type: 'date' })
+  publishedIn: string;
 
   @Column()
   tempImage: string;

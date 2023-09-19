@@ -6,10 +6,10 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Playlist } from '../playlists/playlist.entity';
-import { Favorite } from '../favorites/favorite.entity';
-import { Song } from '../songs/song.entity';
-import { Music } from '../music/music.entity';
+import { Playlist } from '../playlists/entities/playlist.entity';
+import { Favorite } from '../favorites/entities/favorite.entity';
+import { Song } from '../songs/entities/song.entity';
+import { Music } from '../music/entities/music.entity';
 
 @Entity()
 export class Track extends BaseEntity {

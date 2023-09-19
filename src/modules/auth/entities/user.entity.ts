@@ -8,9 +8,9 @@ import {
   Unique,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { RoleEnum } from '../../common/enums/role.enum';
-import { Auth } from '../../common/classes/auth';
-import { Profile } from '../profiles/profile.entity';
+import { RoleEnum } from '../../../common/enums/role.enum';
+import { Auth } from '../../../common/classes/auth';
+import { Profile } from '../../profiles/entities/profile.entity';
 
 @Entity('users')
 @Unique(['username', 'email'])

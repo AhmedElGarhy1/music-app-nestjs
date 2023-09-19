@@ -1,9 +1,9 @@
 import { AbstractMusic } from 'src/common/classes/abstract-music';
 import { LanguageEnum } from 'src/common/enums/language.enum';
 import { SongTypeEnum } from 'src/common/enums/song-type.enum';
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
-import { SingerAlbum } from '../singer-album/singer-album.entity';
-import { Track } from '../tracks/track.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { SingerAlbum } from '../../singer-albums/entities/singer-album.entity';
+import { Track } from '../../tracks/track.entity';
 
 @Entity()
 export class Song extends AbstractMusic {
@@ -20,11 +20,12 @@ export class Song extends AbstractMusic {
   language: LanguageEnum;
 
   @ManyToOne(() => SingerAlbum, (album) => album.songs)
+  @JoinColumn({ name: 'singerAlbumId' })
   album: SingerAlbum;
 
-  //   foregn key
+  // foregn key
   @Column()
-  albumId: number;
+  singerAlbumId: number;
 
   @OneToMany(() => Track, (track) => track.song, {
     eager: true,

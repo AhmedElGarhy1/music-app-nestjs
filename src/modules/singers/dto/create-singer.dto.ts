@@ -2,9 +2,9 @@ import { ArtistEnum } from 'src/common/enums/artist-type.enum';
 import { GenderEnum } from 'src/common/enums/gender.enum';
 
 import { IsString, IsEnum, Matches } from 'class-validator';
-import { isEnumValidation } from 'src/common/decorators/IsEnumValidation';
+import { IsEnumValidation } from 'src/common/decorators/IsEnumValidation';
 
-export class CreateSongDto {
+export class CreateSingerDto {
   @IsString()
   name: string;
 
@@ -17,9 +17,9 @@ export class CreateSongDto {
   @IsString()
   nationality: string;
 
-  @isEnumValidation(ArtistEnum)
+  @IsEnumValidation(ArtistEnum)
   type: ArtistEnum;
 
-  @isEnumValidation(GenderEnum)
+  @IsEnumValidation(GenderEnum)
   gender: GenderEnum;
 }

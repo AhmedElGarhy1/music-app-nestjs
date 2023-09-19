@@ -3,31 +3,24 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateSongAlbumDto } from './dto/create-song-album.dto';
-import { UpdateSongAlbumDto } from './dto/update-song-album.dto';
-import { CreateSongDto } from './dto/create-song.dto';
 import { SingersService } from './singers.service';
+import { CreateSingerDto } from './dto/create-singer.dto';
+import { UpdateSingerDto } from './dto/update-singer.dto';
+import { ISingersController } from './interfaces/ISingersController';
 
 @Controller('singers')
-export class SingersController {
+export class SingersController implements ISingersController {
   constructor(private singersService: SingersService) {}
 
   @Post()
-  async create(@Body() songData: CreateSongDto) {
+  async create(@Body() songData: CreateSingerDto) {
     const singer = this.singersService.create(songData);
     return singer;
-  }
-
-  @Post(':id/album')
-  async createAlbum(
-    @Param('id') id: string,
-    @Body() mucitionAlbumData: CreateSongAlbumDto,
-  ) {
-    return 'album created';
   }
 
   @Get()
@@ -39,18 +32,20 @@ export class SingersController {
   @Get(':id')
   async getOne(@Param('id') id: string) {
     const singer = await this.singersService.findById(+id);
+
     return singer;
   }
 
   @Patch(':id')
-  async updateOne(
-    @Param('id') id: string,
-    @Body() mucitionAlbumData: UpdateSongAlbumDto,
-  ) {
-    return 'update one ' + id;
+  async updateOne(@Param('id') id: string, @Body() songData: UpdateSingerDto) {
+    const singer = await this.singersService.updateById(+id, songData);
+
+    return singer;
   }
+
   @Delete(':id')
   async deleteOne(@Param('id') id: string) {
-    return ' deleted ' + id;
+    const singer = await this.singersService.deleteById(+id);
+    return singer;
   }
 }
