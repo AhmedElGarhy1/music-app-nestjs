@@ -7,8 +7,8 @@ export const database: TypeOrmModule = {
   username: 'postgres',
   password: 'gemater',
   // password: 'elgarhy',
-  // password: 'root',
   database: 'music_app',
   entities: [__dirname + '/**/*.entity{.js,.ts}'],
+  // entities: ["src/modules" + '/**/*.entity.{js,ts}'],
   synchronize: true,
 };
