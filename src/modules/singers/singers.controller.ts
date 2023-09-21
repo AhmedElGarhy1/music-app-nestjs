@@ -7,19 +7,24 @@ import {
   Param,
   Patch,
   Post,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { SingersService } from './singers.service';
 import { CreateSingerDto } from './dto/create-singer.dto';
 import { UpdateSingerDto } from './dto/update-singer.dto';
 import { ISingersController } from './interfaces/ISingersController';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('singers')
 export class SingersController implements ISingersController {
   constructor(private singersService: SingersService) {}
 
+  @UseInterceptors(FileInterceptor('image'))
   @Post()
-  async create(@Body() songData: CreateSingerDto) {
-    const singer = this.singersService.create(songData);
+  async create(@Body() songData: CreateSingerDto, @UploadedFile() image: any) {
+    songData.image = image;
+    const singer = await this.singersService.create(songData);
     return singer;
   }
 

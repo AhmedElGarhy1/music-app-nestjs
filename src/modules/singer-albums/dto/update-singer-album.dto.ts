@@ -1,19 +1,4 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
-import { Column } from 'typeorm';
+import { CreateSingerAlbumDto } from './create-singer-album.dto';
 
-export class UpdateSingerAlbumDto {
-  @IsOptional()
-  @IsString()
-  @Column()
-  name: string;
-
-  @IsOptional()
-  @IsString()
-  @Column()
-  image: string;
-
-  @IsOptional()
-  @IsNumber()
-  @Column()
-  singerId: number;
-}
+import { PartialType } from '@nestjs/swagger';
+export class UpdateSingerAlbumDto extends PartialType(CreateSingerAlbumDto) {}

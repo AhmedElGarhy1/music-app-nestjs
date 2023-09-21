@@ -9,14 +9,26 @@ import { Repository } from 'typeorm';
 import { CreateSingerDto } from './dto/create-singer.dto';
 import { UpdateSingerDto } from './dto/update-singer.dto';
 import { ISingersService } from './interfaces/ISingersService';
+import { AwsService } from 'src/common/modules/aws/aws.service';
+import { AwsFolderEnum } from 'src/common/enums/aws-folder.enum';
 
 @Injectable()
 export class SingersService implements ISingersService {
-  constructor(@InjectRepository(Singer) private repo: Repository<Singer>) {}
+  constructor(
+    @InjectRepository(Singer) private readonly repo: Repository<Singer>,
+    private readonly awsService: AwsService,
+  ) {}
 
   async create(data: CreateSingerDto) {
     // check if the name is unique
     await this.checkUniqeness(data.name);
+
+    // upload image
+    const imagePath = await this.awsService.uploadFile(
+      data.image,
+      AwsFolderEnum.SINGER_IMAGES,
+    );
+    data.image = imagePath;
 
     const singer = this.repo.create(data);
     return await this.repo.save(singer);

@@ -1,8 +1,9 @@
 import { ArtistEnum } from 'src/common/enums/artist-type.enum';
 import { GenderEnum } from 'src/common/enums/gender.enum';
 
-import { IsString, IsEnum, Matches } from 'class-validator';
+import { IsString, IsEnum, Matches, IsNotEmpty } from 'class-validator';
 import { IsEnumValidation } from 'src/common/decorators/IsEnumValidation';
+import { IsFileValidation } from 'src/common/decorators/IsFileValidation';
 
 export class CreateSingerDto {
   @IsString()
@@ -11,8 +12,7 @@ export class CreateSingerDto {
   @IsString()
   info: string;
 
-  @IsString()
-  image: string;
+  image: any;
 
   @IsString()
   nationality: string;

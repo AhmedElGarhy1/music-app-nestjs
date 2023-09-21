@@ -17,12 +17,12 @@ import {
   TracksModule,
   SingersModule,
 } from './modules';
-
-const database = require('../ormconfig');
+import { AwsModule } from './common/modules/aws/aws.module';
+import config from './config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(database),
+    TypeOrmModule.forRoot(config.database),
     AuthModule,
     ProfilesModule,
     SingersModule,
@@ -36,6 +36,7 @@ const database = require('../ormconfig');
     NotificationsModule,
     TracksModule,
     AppModule,
+    AwsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
