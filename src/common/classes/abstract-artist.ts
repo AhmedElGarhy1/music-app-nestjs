@@ -13,7 +13,7 @@ export abstract class AbstractArtist extends BaseEntity {
   @Column()
   info: string;
 
-  @Column()
+  @Column({ nullable: true })
   image: string;
 
   @Column({

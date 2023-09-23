@@ -24,11 +24,13 @@ export class SingersService implements ISingersService {
     await this.checkUniqeness(data.name);
 
     // upload image
-    const imagePath = await this.awsService.uploadFile(
-      data.image,
-      AwsFolderEnum.SINGER_IMAGES,
-    );
-    data.image = imagePath;
+    if (data.image) {
+      const imagePath = await this.awsService.uploadFile(
+        data.image,
+        AwsFolderEnum.SINGER_IMAGES,
+      );
+      data.image = imagePath;
+    }
 
     const singer = this.repo.create(data);
     return await this.repo.save(singer);

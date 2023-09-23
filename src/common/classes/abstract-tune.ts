@@ -1,7 +1,8 @@
 import { BaseEntity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { LanguageEnum } from '../enums/language.enum';
 
 @Unique(['name', 'source'])
-export abstract class AbstractMusic extends BaseEntity {
+export abstract class AbstractTune extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,4 +26,10 @@ export abstract class AbstractMusic extends BaseEntity {
 
   @Column()
   tempImage: string;
+
+  @Column({
+    type: 'enum',
+    enum: LanguageEnum,
+  })
+  language: LanguageEnum;
 }

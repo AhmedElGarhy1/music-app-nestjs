@@ -6,45 +6,57 @@ import {
   Param,
   Patch,
   Post,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
-import { CreateMusicianAlbumDto } from './dtos/create-musician-album.dto';
-import { UpdateMusicianAlbumDto } from './dtos/update-musician-album.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { IMusiciansController } from './interfaces/IMusiciansController';
+import { CreateMusicianDto } from './dto/create-musician.dto';
+import { UpdateMusicianDto } from './dto/update-musician.dto';
+import { MusiciansService } from './musicians.service';
 
 @Controller('musicians')
-export class MusiciansController {
-  @Post()
-  create() {
-    return 'musician created';
-  }
+export class MusiciansController implements IMusiciansController {
+  constructor(private musiciansService: MusiciansService) {}
 
-  @Post(':id/album')
-  createAlbum(
-    @Param('id') id: string,
-    @Body() mucitionAlbumData: CreateMusicianAlbumDto,
+  @UseInterceptors(FileInterceptor('image'))
+  @Post()
+  async create(
+    @Body() musicData: CreateMusicianDto,
+    @UploadedFile() image: any,
   ) {
-    const {} = mucitionAlbumData;
-    return 'album created';
+    console.log(image);
+    musicData.image = image;
+    const musician = await this.musiciansService.create(musicData);
+    return musician;
   }
 
   @Get()
-  getAll() {
-    return 'get all';
+  async getAll() {
+    const musicians = await this.musiciansService.findAll();
+    return musicians;
   }
 
   @Get(':id')
-  getOne(@Param('id') id: string) {
-    return 'get one ' + id;
+  async getOne(@Param('id') id: string) {
+    const musician = await this.musiciansService.findById(+id);
+
+    return musician;
   }
 
   @Patch(':id')
-  updateOne(
+  async updateOne(
     @Param('id') id: string,
-    @Body() mucitionAlbumData: UpdateMusicianAlbumDto,
+    @Body() musicData: UpdateMusicianDto,
   ) {
-    return 'update one ' + id;
+    const musician = await this.musiciansService.updateById(+id, musicData);
+
+    return musician;
   }
+
   @Delete(':id')
-  deleteOne(@Param('id') id: string) {
-    return ' deleted ' + id;
+  async deleteOne(@Param('id') id: string) {
+    const musician = await this.musiciansService.deleteById(+id);
+    return musician;
   }
 }

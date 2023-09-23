@@ -7,36 +7,12 @@ import {
   isNumber,
 } from 'class-validator';
 import { IsEnumValidation } from 'src/common/decorators/IsEnumValidation';
-import { LanguageEnum } from 'src/common/enums/language.enum';
+import { CreateTuneDto } from 'src/common/dto/tune/create-tune.dto';
 import { SongTypeEnum } from 'src/common/enums/song-type.enum';
 
-export class CreateSongDto {
-  @IsString()
-  name: string;
-
-  @IsString()
-  description: string;
-
-  @IsString()
-  artist: string;
-
-  @IsNumber()
-  rate: number;
-
-  @IsString()
-  source: string;
-
-  @IsISO8601({ strict: true })
-  publishedIn: string;
-
-  @IsString()
-  tempImage: string;
-
+export class CreateSongDto extends CreateTuneDto {
   @IsEnumValidation(SongTypeEnum)
   type: SongTypeEnum;
-
-  @IsEnumValidation(LanguageEnum)
-  language: LanguageEnum;
 
   @IsNumber()
   singerAlbumId: number;
