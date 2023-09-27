@@ -12,6 +12,8 @@ export class MusicianAlbum extends AbstractAlbum {
   @Column()
   musicianId: number;
 
-  @OneToMany(() => Music, (music) => music.album)
-  musics: Music[];
+  @OneToMany(() => Music, (music) => music.album, {
+    eager: true,
+  })
+  music: Music[];
 }

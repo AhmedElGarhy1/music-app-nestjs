@@ -1,7 +1,7 @@
-import { IsNumber } from 'class-validator';
+import { IsNumberString } from 'class-validator';
 import { CreateAlbumDto } from 'src/common/dto/album/create-album.dto';
 
 export class CreateMusicianAlbumDto extends CreateAlbumDto {
-  @IsNumber()
+  @IsNumberString()
   musicianId: number;
 }

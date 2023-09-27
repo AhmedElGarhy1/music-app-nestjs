@@ -25,7 +25,6 @@ export class MusiciansController implements IMusiciansController {
     @Body() musicData: CreateMusicianDto,
     @UploadedFile() image: any,
   ) {
-    console.log(image);
     musicData.image = image;
     const musician = await this.musiciansService.create(musicData);
     return musician;
@@ -44,11 +43,16 @@ export class MusiciansController implements IMusiciansController {
     return musician;
   }
 
+  @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
   async updateOne(
     @Param('id') id: string,
     @Body() musicData: UpdateMusicianDto,
+    @UploadedFile() image: any,
   ) {
+    if (image) {
+      musicData.image = image;
+    }
     const musician = await this.musiciansService.updateById(+id, musicData);
 
     return musician;

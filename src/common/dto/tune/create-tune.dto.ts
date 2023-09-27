@@ -1,4 +1,4 @@
-import { IsISO8601, IsNumber, IsString } from 'class-validator';
+import { IsISO8601, IsNumberString, IsString } from 'class-validator';
 import { IsEnumValidation } from 'src/common/decorators/IsEnumValidation';
 import { LanguageEnum } from 'src/common/enums/language.enum';
 
@@ -12,7 +12,7 @@ export class CreateTuneDto {
   @IsString()
   artist: string;
 
-  @IsNumber()
+  @IsNumberString()
   rate: number;
 
   @IsString()
@@ -21,8 +21,7 @@ export class CreateTuneDto {
   @IsISO8601({ strict: true })
   publishedIn: string;
 
-  @IsString()
-  tempImage: string;
+  image: any;
 
   @IsEnumValidation(LanguageEnum)
   language: LanguageEnum;

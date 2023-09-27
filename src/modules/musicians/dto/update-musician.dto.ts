@@ -1,2 +1,3 @@
-import { UpdateArtistDto } from 'src/common/dto/artist/update-artist.dto';
-export class UpdateMusicianDto extends UpdateArtistDto {}
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateMusicianDto } from './create-musician.dto';
+export class UpdateMusicianDto extends PartialType(CreateMusicianDto) {}

@@ -4,6 +4,5 @@ export class CreateAlbumDto {
   @IsString()
   name: string;
 
-  @IsString()
-  image: string;
+  image: any;
 }

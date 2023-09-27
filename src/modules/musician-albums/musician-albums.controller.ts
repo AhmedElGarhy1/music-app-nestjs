@@ -6,26 +6,26 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { MusicianAlbumsService } from './musician-albums.service';
 import { CreateMusicianAlbumDto } from './dto/create-musician-album.dto';
 import { UpdateMusicianAlbumDto } from './dto/update-musician-album.dto';
-import { MusiciansService } from '../musicians/musicians.service';
 import { IMusicianAlbumsController } from './interfaces/IMusicianAlbumsController';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('musician-albums')
 export class MusicianAlbumsController implements IMusicianAlbumsController {
-  constructor(
-    private musicianAlbumsService: MusicianAlbumsService,
-    private musiciansService: MusiciansService,
-  ) {}
+  constructor(private musicianAlbumsService: MusicianAlbumsService) {}
 
+  @UseInterceptors(FileInterceptor('image'))
   @Post()
-  async create(@Body() musicianAlbumData: CreateMusicianAlbumDto) {
-    // check if musician exists
-    if (musicianAlbumData.musicianId)
-      await this.musiciansService.findById(musicianAlbumData.musicianId);
-
+  async create(
+    @Body() musicianAlbumData: CreateMusicianAlbumDto,
+    @UploadedFile() image: any,
+  ) {
+    musicianAlbumData.image = image;
     const musicianAlbum = this.musicianAlbumsService.create(musicianAlbumData);
     return musicianAlbum;
   }
@@ -43,14 +43,14 @@ export class MusicianAlbumsController implements IMusicianAlbumsController {
     return musicianAlbum;
   }
 
+  @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
   async updateOne(
     @Param('id') id: string,
     @Body() musicianAlbumData: UpdateMusicianAlbumDto,
+    @UploadedFile() image: string,
   ) {
-    // check if musician exists
-    if (musicianAlbumData.musicianId)
-      await this.musiciansService.findById(musicianAlbumData.musicianId);
+    if (image) musicianAlbumData.image = image;
 
     const musicianAlbum = await this.musicianAlbumsService.updateById(
       +id,

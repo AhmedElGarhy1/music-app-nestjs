@@ -5,6 +5,8 @@ import { extname } from 'path';
 import { AwsFolderEnum } from 'src/common/enums/aws-folder.enum';
 import config from 'src/config';
 
+const splitter = 'amazonaws.com/';
+
 AWS.config.update({
   accessKeyId: config.aws.ACCESS_KEY_ID,
   secretAccessKey: config.aws.SECRET_ACCESS_KEY_ID,
@@ -45,12 +47,15 @@ export class AwsService {
   async deleteFile(filename: string): Promise<string> {
     return new Promise((resolve, reject) => {
       try {
+        const key = filename.substring(
+          filename.indexOf(splitter) + splitter.length,
+        );
         const params: AWS.S3.Types.DeleteObjectRequest = {
           Bucket: config.aws.AWS_S3_BUCKET_NAME,
-          Key: filename.substring(filename.indexOf('amazonaws.com/')),
+          Key: key,
         };
 
-        s3.deleteObject(params, (err, data) => {
+        s3.deleteObject(params, (err) => {
           if (err) {
             console.log(err);
             return reject(err);

@@ -19,7 +19,7 @@ export class Music extends AbstractTune {
   })
   type: MusicTypeEnum;
 
-  @ManyToOne((type) => MusicianAlbum, (album) => album.musics)
+  @ManyToOne((type) => MusicianAlbum, (album) => album.music)
   @JoinColumn({ name: 'musicianAlbumId' })
   album: MusicianAlbum;
 

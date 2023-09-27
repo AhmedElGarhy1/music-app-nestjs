@@ -1,3 +1,4 @@
-import { UpdateArtistDto } from 'src/common/dto/artist/update-artist.dto';
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateSingerDto } from './create-singer.dto';
 
-export class UpdateSingerDto extends UpdateArtistDto {}
+export class UpdateSingerDto extends PartialType(CreateSingerDto) {}

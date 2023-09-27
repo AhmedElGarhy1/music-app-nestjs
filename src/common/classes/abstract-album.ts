@@ -7,6 +7,6 @@ export class AbstractAlbum extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   image: string;
 }

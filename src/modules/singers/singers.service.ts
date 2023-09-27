@@ -56,15 +56,29 @@ export class SingersService implements ISingersService {
     const singer = await this.findById(id);
     await this.checkUniqeness(data.name);
 
+    if (data.image) {
+      if (singer.image) {
+        await this.awsService.deleteFile(singer.image);
+      }
+      const imagePath = await this.awsService.uploadFile(
+        data.image,
+        AwsFolderEnum.SINGER_IMAGES,
+      );
+      data.image = imagePath;
+    }
+
     Object.assign(singer, data);
     return await this.repo.save(singer);
   }
 
   async deleteById(id: number) {
     const singer = await this.findById(id);
-
     const deletedSinger = await this.repo.remove(singer);
-    return await this.repo.save(deletedSinger);
+    await this.repo.save(deletedSinger);
+    if (deletedSinger.image) {
+      await this.awsService.deleteFile(deletedSinger.image);
+    }
+    return deletedSinger;
   }
 
   private async checkUniqeness(name: string) {

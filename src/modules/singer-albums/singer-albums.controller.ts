@@ -6,37 +6,29 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { SingerAlbumsService } from './singer-albums.service';
 import { CreateSingerAlbumDto } from './dto/create-singer-album.dto';
 import { UpdateSingerAlbumDto } from './dto/update-singer-album.dto';
-import { SingersService } from '../singers/singers.service';
 import { ISingerAlbumsController } from './interfaces/ISingerAlbumsController';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('singer-albums')
 export class SingerAlbumsController implements ISingerAlbumsController {
-  constructor(
-    private singerAlbumsService: SingerAlbumsService,
-    private singersService: SingersService,
-  ) {}
+  constructor(private singerAlbumsService: SingerAlbumsService) {}
 
+  @UseInterceptors(FileInterceptor('image'))
   @Post()
-  async create(@Body() singerAlbumData: CreateSingerAlbumDto) {
-    // check if singer exists
-    if (singerAlbumData.singerId)
-      await this.singersService.findById(singerAlbumData.singerId);
-
+  async create(
+    @Body() singerAlbumData: CreateSingerAlbumDto,
+    @UploadedFile() image: any,
+  ) {
+    singerAlbumData.image = image;
     const singerAlbum = this.singerAlbumsService.create(singerAlbumData);
     return singerAlbum;
   }
-
-  // @Post(':id/album')
-  // async createAlbum(
-  //   @Param('id') id: string,
-  //   @Body() mucitionAlbumData: CreateSin,
-  // ) {
-  //   return 'album created';
-  // }
 
   @Get()
   async getAll() {
@@ -51,14 +43,16 @@ export class SingerAlbumsController implements ISingerAlbumsController {
     return singerAlbum;
   }
 
+  @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
   async updateOne(
     @Param('id') id: string,
     @Body() singerAlbumData: UpdateSingerAlbumDto,
+    @UploadedFile() image: any,
   ) {
-    // check if singer exists
-    if (singerAlbumData.singerId)
-      await this.singersService.findById(singerAlbumData.singerId);
+    if (image) {
+      singerAlbumData.image = image;
+    }
 
     const singerAlbum = await this.singerAlbumsService.updateById(
       +id,

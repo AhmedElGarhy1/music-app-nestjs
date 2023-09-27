@@ -36,14 +36,21 @@ export class SingersController implements ISingersController {
   @Get(':id')
   async getOne(@Param('id') id: string) {
     const singer = await this.singersService.findById(+id);
-
     return singer;
   }
 
+  @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
-  async updateOne(@Param('id') id: string, @Body() songData: UpdateSingerDto) {
-    const singer = await this.singersService.updateById(+id, songData);
+  async updateOne(
+    @Param('id') id: string,
+    @Body() songData: UpdateSingerDto,
+    @UploadedFile() image: any,
+  ) {
+    if (image) {
+      songData.image = image;
+    }
 
+    const singer = await this.singersService.updateById(+id, songData);
     return singer;
   }
 

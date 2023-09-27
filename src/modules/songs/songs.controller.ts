@@ -6,26 +6,23 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
-import { SingerAlbumsService } from './../singer-albums/singer-albums.service';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
 import { ISongsController } from './interfaces/ISongsController';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('songs')
 export class SongsController implements ISongsController {
-  constructor(
-    private songsService: SongsService,
-    private singerAlbumsService: SingerAlbumsService,
-  ) {}
+  constructor(private songsService: SongsService) {}
 
+  @UseInterceptors(FileInterceptor('image'))
   @Post()
-  async create(@Body() songData: CreateSongDto) {
-    // check if album exists
-    if (songData.singerAlbumId)
-      await this.singerAlbumsService.findById(songData.singerAlbumId);
-
+  async create(@Body() songData: CreateSongDto, @UploadedFile() image: any) {
+    songData.image = image;
     const song = await this.songsService.create(songData);
     return song;
   }
@@ -44,12 +41,12 @@ export class SongsController implements ISongsController {
     return song;
   }
 
+  @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
-  async updateOne(@Param('id') id: string, @Body() songData: UpdateSongDto) {
-    // check if album exists
-    if (songData.singerAlbumId)
-      await this.singerAlbumsService.findById(songData.singerAlbumId);
-
+  async updateOne(@Param('id') id: string, @Body() songData: UpdateSongDto, @UploadedFile() image: any) {
+    if (image) {
+      songData.image = image;
+    }
     const song = await this.songsService.updateById(+id, songData);
     return song;
   }

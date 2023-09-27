@@ -24,8 +24,8 @@ export abstract class AbstractTune extends BaseEntity {
   @Column({ type: 'date' })
   publishedIn: string;
 
-  @Column()
-  tempImage: string;
+  @Column({ nullable: true })
+  image: string;
 
   @Column({
     type: 'enum',

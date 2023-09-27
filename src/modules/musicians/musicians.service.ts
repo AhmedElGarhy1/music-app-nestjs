@@ -56,6 +56,17 @@ export class MusiciansService implements IMusiciansService {
     const musician = await this.findById(id);
     await this.checkUniqeness(data.name);
 
+    if (data.image) {
+      if (musician.image) {
+        await this.awsService.deleteFile(musician.image);
+      }
+      const imagePath = await this.awsService.uploadFile(
+        data.image,
+        AwsFolderEnum.MUSICIAN_IMAGES,
+      );
+      data.image = imagePath;
+    }
+
     Object.assign(musician, data);
     return await this.repo.save(musician);
   }
@@ -64,7 +75,12 @@ export class MusiciansService implements IMusiciansService {
     const musician = await this.findById(id);
 
     const deletedMusician = await this.repo.remove(musician);
-    return await this.repo.save(deletedMusician);
+
+    await this.repo.save(deletedMusician);
+    if (deletedMusician.image) {
+      await this.awsService.deleteFile(deletedMusician.image);
+    }
+    return deletedMusician;
   }
 
   private async checkUniqeness(name: string) {

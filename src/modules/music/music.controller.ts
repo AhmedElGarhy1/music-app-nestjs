@@ -6,24 +6,23 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { MusicService } from './music.service';
 import { MusicianAlbumsService } from '../musician-albums/musician-albums.service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('music')
 export class MusicController implements MusicController {
-  constructor(
-    private musicService: MusicService,
-    private musicianAlbumService: MusicianAlbumsService,
-  ) {}
+  constructor(private musicService: MusicService) {}
 
+  @UseInterceptors(FileInterceptor('image'))
   @Post()
-  async create(@Body() musicData: CreateMusicDto) {
-    // check if album exists
-    if (musicData.musicianAlbumId)
-      await this.musicianAlbumService.findById(musicData.musicianAlbumId);
+  async create(@Body() musicData: CreateMusicDto, @UploadedFile() image: any) {
+    musicData.image = image;
 
     const music = await this.musicService.create(musicData);
     return music;
@@ -43,11 +42,16 @@ export class MusicController implements MusicController {
     return music;
   }
 
+  @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
-  async updateOne(@Param('id') id: string, @Body() musicData: UpdateMusicDto) {
-    // check if album exists
-    if (musicData.musicianAlbumId)
-      await this.musicianAlbumService.findById(musicData.musicianAlbumId);
+  async updateOne(
+    @Param('id') id: string,
+    @Body() musicData: UpdateMusicDto,
+    @UploadedFile() image: any,
+  ) {
+    if (image) {
+      musicData.image = image;
+    }
 
     const music = await this.musicService.updateById(+id, musicData);
     return music;
