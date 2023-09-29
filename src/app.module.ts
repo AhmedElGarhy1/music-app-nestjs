@@ -19,10 +19,12 @@ import {
 } from './modules';
 import { AwsModule } from './common/modules/aws/aws.module';
 import config from './config';
+import { NodemailerModule } from '@crowdlinker/nestjs-mailer';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config.database),
+    NodemailerModule.forRoot(config.nodemailer),
     AuthModule,
     ProfilesModule,
     SingersModule,

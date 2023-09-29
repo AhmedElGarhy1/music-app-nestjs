@@ -16,6 +16,10 @@
 // };
 
 // export default config;
+import {
+  NodemailerOptions,
+  NodemailerDrivers,
+} from '@crowdlinker/nestjs-mailer';
 const ormconfig = require('../ormconfig');
 
 console.log(process.env.ACCESS_KEY_ID);
@@ -28,9 +32,26 @@ const aws = {
   REGION: 'us-east-1',
 };
 
+const nodemailer: NodemailerOptions<NodemailerDrivers.SMTP> = {
+  transport: {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      username: 'gemater.g@gmail.com',
+      pass: '-----',
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  },
+  defaults: {},
+};
+
 const config = {
   database: ormconfig,
   aws,
+  nodemailer,
 };
 
 export default config;

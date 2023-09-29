@@ -34,6 +34,7 @@
     "@nestjs/swagger": "^4.8.2",
     "@nestjs/typeorm": "^7.0.0",
     "@nestjs/websockets": "^7.2.0",
+    "@types/passport-jwt": "^3.0.10",
     "@types/passport-local": "^1.0.33",
     "aws-sdk": "^2.1462.0",
     "bcryptjs": "^2.4.3",

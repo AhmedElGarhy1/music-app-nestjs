@@ -12,5 +12,9 @@ export class AuthService {
     private AuthRepository: Repository<User>,
   ) {}
 
+  async findByEmail(email: string) {
+    return Promise.resolve({} as User);
+  }
+
   // Use AuthRepository for database operations
 }
