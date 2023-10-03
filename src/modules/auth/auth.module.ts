@@ -8,7 +8,7 @@ import { EmailVerification } from './entities/email-verification.entity';
 import { JwtStrategy } from './strategies/jwt-strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { UserService } from './user.service';
+import { UsersService } from './user.service';
 
 @Module({
   imports: [
@@ -23,7 +23,7 @@ import { UserService } from './user.service';
     }),
     TypeOrmModule.forFeature([User, EmailVerification]),
   ],
-  providers: [JwtStrategy, AuthService, UserService],
+  providers: [JwtStrategy, AuthService, UsersService],
   exports: [JwtStrategy, JwtModule, PassportModule],
   controllers: [AuthController],
 })
