@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { UserRepository } from './repositories/user.repository';
-import { AuthDto } from './dto/auth.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -13,19 +13,14 @@ export class UsersService {
     return users;
   }
 
-  async create(data: AuthDto) {
-    await this.checkUniqueness(data.email, data.username);
+  async create(data: CreateUserDto) {
+    data.auth = {
+      facebookId: null,
+      gmailId: null,
+      validEmail: false,
+    };
 
-    // const tempUser = {
-    //   auth: {
-    //     facebookId: null,
-    //     gmailId: null,
-    //     validEmail: null,
-    //   },
-    // };
-
-    const user = this.repo.create({ ...data });
-    return;
+    const user = this.repo.create(data);
 
     return this.repo.save(user);
   }
@@ -55,7 +50,6 @@ export class UsersService {
 
   async update(id: number, userData: Partial<User>) {
     const user = await this.findById(id);
-    if (!user) throw new NotFoundException("Coulden't Find this User");
     Object.assign(user, userData);
     return this.repo.save(user);
   }

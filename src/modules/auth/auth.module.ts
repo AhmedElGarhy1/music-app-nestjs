@@ -9,6 +9,7 @@ import { JwtStrategy } from './strategies/jwt-strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersService } from './user.service';
+import { ProfilesModule } from '../profiles/profiles.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UsersService } from './user.service';
       },
     }),
     TypeOrmModule.forFeature([User, EmailVerification]),
+    ProfilesModule,
   ],
   providers: [JwtStrategy, AuthService, UsersService],
   exports: [JwtStrategy, JwtModule, PassportModule],

@@ -1,5 +1,5 @@
 export class Auth {
-  validEmail: string;
+  validEmail: boolean;
   gmailId: string;
   facebookId: string;
 }
