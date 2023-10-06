@@ -1,5 +1,5 @@
 import { IsString } from 'class-validator';
-import { IsEnumValidation } from 'src/common/decorators/IsEnumValidation';
+import { IsEnumValidator } from 'src/common/decorators/validation/is-enum-validator.decorator';
 import { ArtistEnum } from 'src/common/enums/artist-type.enum';
 import { GenderEnum } from 'src/common/enums/gender.enum';
 
@@ -15,9 +15,9 @@ export class CreateArtistDto {
   @IsString()
   nationality: string;
 
-  @IsEnumValidation(ArtistEnum)
+  @IsEnumValidator(ArtistEnum)
   type: ArtistEnum;
 
-  @IsEnumValidation(GenderEnum)
+  @IsEnumValidator(GenderEnum)
   gender: GenderEnum;
 }

@@ -3,18 +3,20 @@ import {
   Column,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Profile } from '../../profiles/entities/profile.entity';
 import { Track } from '../../tracks/track.entity';
+import { User } from 'src/modules/auth/entities/user.entity';
 
 @Entity('favorite-list')
 export class Favorite extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Profile, (profile) => profile.favorite)
-  profile: Profile;
+  @OneToOne(() => User, (user) => user.favorite)
+  user: User;
 
   @OneToMany(() => Track, (track) => track.favorite, {
     eager: true,

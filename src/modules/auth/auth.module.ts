@@ -4,12 +4,13 @@ import { User } from './entities/user.entity';
 import { PassportModule } from '@nestjs/passport';
 import { AuthConstants } from './constants/auth-constants';
 import { JwtModule } from '@nestjs/jwt';
-import { EmailVerification } from './entities/email-verification.entity';
 import { JwtStrategy } from './strategies/jwt-strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersService } from './user.service';
 import { ProfilesModule } from '../profiles/profiles.module';
+import { EmailModule } from 'src/common/modules/email/email.module';
+import { FavoritesModule } from '../favorites/favorites.module';
 
 @Module({
   imports: [
@@ -22,8 +23,10 @@ import { ProfilesModule } from '../profiles/profiles.module';
         expiresIn: AuthConstants.expiresIn,
       },
     }),
-    TypeOrmModule.forFeature([User, EmailVerification]),
+    TypeOrmModule.forFeature([User]),
     ProfilesModule,
+    FavoritesModule,
+    EmailModule,
   ],
   providers: [JwtStrategy, AuthService, UsersService],
   exports: [JwtStrategy, JwtModule, PassportModule],

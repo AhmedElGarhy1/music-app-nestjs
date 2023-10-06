@@ -20,6 +20,7 @@ import {
 import { AwsModule } from './common/modules/aws/aws.module';
 import config from './config';
 import { NodemailerModule } from '@crowdlinker/nestjs-mailer';
+import { EmailModule } from './common/modules/email/email.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { NodemailerModule } from '@crowdlinker/nestjs-mailer';
     TracksModule,
     AppModule,
     AwsModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

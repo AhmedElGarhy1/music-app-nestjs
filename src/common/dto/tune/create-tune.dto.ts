@@ -1,5 +1,5 @@
 import { IsISO8601, IsNumberString, IsString } from 'class-validator';
-import { IsEnumValidation } from 'src/common/decorators/IsEnumValidation';
+import { IsEnumValidator } from 'src/common/decorators/validation/is-enum-validator.decorator';
 import { LanguageEnum } from 'src/common/enums/language.enum';
 
 export class CreateTuneDto {
@@ -23,6 +23,6 @@ export class CreateTuneDto {
 
   image: any;
 
-  @IsEnumValidation(LanguageEnum)
+  @IsEnumValidator(LanguageEnum)
   language: LanguageEnum;
 }

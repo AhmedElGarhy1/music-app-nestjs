@@ -49,13 +49,4 @@ export class Profile extends BaseEntity {
 
   @OneToOne(() => User, (user) => user.profile)
   user: User;
-
-  @OneToOne(() => Favorite, (favorite) => favorite.profile)
-  @JoinColumn()
-  favorite: Favorite;
-
-  @OneToMany(() => Playlist, (playlist) => playlist.profile, {
-    eager: true,
-  })
-  playlists: Playlist[];
 }

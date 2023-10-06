@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Profile } from './entities/profile.entity';
 import { Repository } from 'typeorm';
@@ -14,5 +14,10 @@ export class ProfilesService {
     const profileInstance = this.repo.create(data);
     const profile = this.repo.save(profileInstance);
     return profile;
+  }
+
+  async checkUniqueness(phone: string) {
+    const isExists = await this.repo.findOne({ phone });
+    if (isExists) throw new BadRequestException('phone is already in use');
   }
 }

@@ -2,6 +2,7 @@ import { RoleEnum } from 'src/common/enums/role.enum';
 import { Auth } from 'src/common/classes/auth';
 import { Profile } from 'src/modules/profiles/entities/profile.entity';
 import { IsEmail, IsString } from 'class-validator';
+import { Favorite } from 'src/modules/favorites/entities/favorite.entity';
 
 export class CreateUserDto {
   @IsString()
@@ -22,4 +23,8 @@ export class CreateUserDto {
   profile: Profile;
 
   profileId: number;
+
+  favorite: Favorite;
+
+  favoriteId: number;
 }

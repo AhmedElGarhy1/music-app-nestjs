@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { UserRepository } from './repositories/user.repository';
@@ -58,10 +62,10 @@ export class UsersService {
     // check if email exists
 
     const isEmailExists = await this.findByEmail(email);
-    if (isEmailExists) throw new NotFoundException('email is already in use');
+    if (isEmailExists) throw new BadRequestException('email is already in use');
 
     const isUsernameExists = await this.findByUsername(username);
     if (isUsernameExists)
-      throw new NotFoundException('username is already in use');
+      throw new BadRequestException('username is already in use');
   }
 }

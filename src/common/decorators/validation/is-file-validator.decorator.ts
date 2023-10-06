@@ -6,7 +6,7 @@ import {
 
 type IsFileOptions = ('image/jpg' | 'image/png' | 'image/jpeg')[];
 
-export function IsFileValidation(
+export function IsFileValidator(
   options: IsFileOptions = ['image/jpg', 'image/png', 'image/jpeg'],
   validationOptions?: ValidationOptions,
 ) {

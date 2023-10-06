@@ -1,5 +1,5 @@
 import { IsNumber, IsPhoneNumber, IsString, Max, Min } from 'class-validator';
-import { IsEnumValidation } from 'src/common/decorators/IsEnumValidation';
+import { IsEnumValidator } from 'src/common/decorators/validation/is-enum-validator.decorator';
 import { GenderEnum } from 'src/common/enums/gender.enum';
 
 export class CreateProfileDto {
@@ -16,7 +16,7 @@ export class CreateProfileDto {
   @IsPhoneNumber('eg')
   phone: string;
 
-  @IsEnumValidation(GenderEnum)
+  @IsEnumValidator(GenderEnum)
   gender: GenderEnum;
 
   @IsString()

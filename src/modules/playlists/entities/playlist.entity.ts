@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { Profile } from '../../profiles/entities/profile.entity';
 import { Track } from '../../tracks/track.entity';
+import { User } from 'src/modules/auth/entities/user.entity';
 
 @Entity()
 @Unique(['name'])
@@ -23,12 +24,12 @@ export class Playlist extends BaseEntity {
   @Column()
   createdAt: Date;
 
-  @ManyToOne(() => Profile, (profile) => profile.playlists)
-  profile: Profile;
+  @ManyToOne(() => User, (user) => user.playlists)
+  user: User;
 
   // foregn key
   @Column()
-  profileId: number;
+  userId: number;
 
   @OneToMany(() => Track, (track) => track.playlist, {
     eager: true,

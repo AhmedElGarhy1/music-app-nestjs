@@ -6,9 +6,9 @@ import {
   Unique,
 } from 'typeorm';
 
-@Entity('verified-emails')
-@Unique(['email', 'emailToken'])
-export class EmailVerification extends BaseEntity {
+@Entity('forgetten-password-emails')
+@Unique(['email', 'passwordToken'])
+export class ForgettenPassword extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,10 +16,7 @@ export class EmailVerification extends BaseEntity {
   email: string;
 
   @Column()
-  emailToken: string;
-
-  @Column()
-  otp: number;
+  passwordToken: string;
 
   @Column('timestamp')
   timestamp: Date;
