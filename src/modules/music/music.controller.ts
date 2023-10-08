@@ -36,7 +36,7 @@ export class MusicController implements MusicController {
   }
 
   @Get(':id')
-  async getOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     const music = await this.musicService.findById(+id);
 
     return music;
@@ -44,7 +44,7 @@ export class MusicController implements MusicController {
 
   @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
-  async updateOne(
+  async update(
     @Param('id') id: string,
     @Body() musicData: UpdateMusicDto,
     @UploadedFile() image: any,
@@ -58,7 +58,7 @@ export class MusicController implements MusicController {
   }
 
   @Delete(':id')
-  async deleteOne(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     const music = await this.musicService.deleteById(+id);
 
     return music;

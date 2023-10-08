@@ -34,14 +34,14 @@ export class SingersController implements ISingersController {
   }
 
   @Get(':id')
-  async getOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     const singer = await this.singersService.findById(+id);
     return singer;
   }
 
   @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
-  async updateOne(
+  async update(
     @Param('id') id: string,
     @Body() songData: UpdateSingerDto,
     @UploadedFile() image: any,
@@ -55,7 +55,7 @@ export class SingersController implements ISingersController {
   }
 
   @Delete(':id')
-  async deleteOne(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     const singer = await this.singersService.deleteById(+id);
     return singer;
   }

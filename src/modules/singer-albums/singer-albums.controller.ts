@@ -37,7 +37,7 @@ export class SingerAlbumsController implements ISingerAlbumsController {
   }
 
   @Get(':id')
-  async getOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     const singerAlbum = await this.singerAlbumsService.findById(+id);
 
     return singerAlbum;
@@ -45,7 +45,7 @@ export class SingerAlbumsController implements ISingerAlbumsController {
 
   @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
-  async updateOne(
+  async update(
     @Param('id') id: string,
     @Body() singerAlbumData: UpdateSingerAlbumDto,
     @UploadedFile() image: any,
@@ -63,7 +63,7 @@ export class SingerAlbumsController implements ISingerAlbumsController {
   }
 
   @Delete(':id')
-  async deleteOne(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     const singerAlbum = await this.singerAlbumsService.deleteById(+id);
 
     return singerAlbum;

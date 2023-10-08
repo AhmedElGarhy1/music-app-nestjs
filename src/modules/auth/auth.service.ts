@@ -6,7 +6,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { User } from './entities/user.entity';
-import { UsersService } from './user.service';
 import { RoleEnum } from 'src/common/enums/role.enum';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { ProfilesService } from '../profiles/profiles.service';
@@ -16,6 +15,7 @@ import { JwtService } from '@nestjs/jwt';
 import { IJwtPayload } from './interfaces/jwt-payload.interface';
 import { FavoritesService } from '../favorites/favorites.service';
 import { ForgetPasswordDto } from './dto/forget-password.dto';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {

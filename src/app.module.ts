@@ -21,6 +21,7 @@ import { AwsModule } from './common/modules/aws/aws.module';
 import config from './config';
 import { NodemailerModule } from '@crowdlinker/nestjs-mailer';
 import { EmailModule } from './common/modules/email/email.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { EmailModule } from './common/modules/email/email.module';
     AppModule,
     AwsModule,
     EmailModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
