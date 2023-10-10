@@ -38,6 +38,11 @@ export class Profile extends BaseEntity {
   @Column()
   country: string;
 
+  @Column({
+    nullable: true,
+  })
+  image: string;
+
   @Column()
   city: string;
 

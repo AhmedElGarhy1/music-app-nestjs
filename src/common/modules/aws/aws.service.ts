@@ -17,7 +17,10 @@ const s3 = new AWS.S3();
 
 @Injectable()
 export class AwsService {
-  async uploadFile(file: any, folder: AwsFolderEnum): Promise<string> {
+  async uploadFile(
+    file: Express.Multer.File,
+    folder: AwsFolderEnum,
+  ): Promise<string> {
     return new Promise((resolve, reject) => {
       try {
         const original = file.originalname;

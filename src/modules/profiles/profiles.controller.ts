@@ -6,12 +6,15 @@ import {
   Patch,
   Delete,
   UseGuards,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { User } from '../auth/entities/user.entity';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { ProfilesService } from './profiles.service';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @UseGuards(JwtAuthGuard)
 @Controller('profiles')
@@ -26,19 +29,26 @@ export class ProfilesController {
 
   @Get()
   async findOne(@CurrentUser() user: User) {
-    const singer = await this.profilesService.findById(+user.id);
-    return singer;
+    const profile = await this.profilesService.findById(+user.id);
+    return profile;
+  }
+
+  @Patch('upload-image')
+  @UseInterceptors(FileInterceptor('image'))
+  async uploadImage(
+    @CurrentUser() user: User,
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    const profile = await this.profilesService.uploadProfileImage(
+      +user.profileId,
+      image,
+    );
+    return profile;
   }
 
   @Patch()
   async update(@CurrentUser() user: User, @Body() songData: UpdateProfileDto) {
-    const singer = await this.profilesService.updateById(+user.id, songData);
-    return singer;
+    const profile = await this.profilesService.updateById(+user.id, songData);
+    return profile;
   }
-
-  //   @Delete(':id')
-  //   async remove(@Param('id') id: string) {
-  //     const singer = await this.profilesService.deleteById(+id);
-  //     return singer;
-  //   }
 }

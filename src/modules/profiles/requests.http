@@ -1,6 +1,6 @@
 ### update profile
 PATCH http://localhost:3000/profiles
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY3OTEzNTMsImV4cCI6MTY5Njg3Nzc1M30.EBmtDuf8tW6pCWWN8XZiq9KgjytORa1jgKScbe3Wnn4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY5NjIxNzAsImV4cCI6MTY5NzA0ODU3MH0.ncIenl_gzgXoq07iwRX0-iIUUHFXp_0U1aRAXfbfbvo
 Content-Type: application/json
 
 {
@@ -11,4 +11,8 @@ Content-Type: application/json
 
 ### get profile
 GET http://localhost:3000/profiles
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY3OTEzNTMsImV4cCI6MTY5Njg3Nzc1M30.EBmtDuf8tW6pCWWN8XZiq9KgjytORa1jgKScbe3Wnn4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY5NjIxNzAsImV4cCI6MTY5NzA0ODU3MH0.ncIenl_gzgXoq07iwRX0-iIUUHFXp_0U1aRAXfbfbvo
+
+### get profile
+POSTe http://localhost:3000/profiles
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY5NjIxNzAsImV4cCI6MTY5NzA0ODU3MH0.ncIenl_gzgXoq07iwRX0-iIUUHFXp_0U1aRAXfbfbvo
