@@ -51,4 +51,10 @@ export class ProfilesController {
     const profile = await this.profilesService.updateById(+user.id, songData);
     return profile;
   }
+
+  @Patch('delete-image')
+  async deleteImage(@CurrentUser() user: User) {
+    const profile = await this.profilesService.deleteProfileImage(+user.id);
+    return profile;
+  }
 }

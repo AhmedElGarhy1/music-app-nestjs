@@ -47,16 +47,23 @@ export class ProfilesService {
   async uploadProfileImage(profileId: number, file: Express.Multer.File) {
     const profile = await this.findById(profileId);
 
-    // check if file eixsts
-    if (profile.image) {
-      //       delete the old image before uploading a new one
-      await this.awsService.deleteFile(profile.image);
-    }
-    const imagePath = await this.awsService.uploadFile(
+    // delete the old image before uploading a new one
+    if (profile.image) await this.awsService.deleteFile(profile.image);
+    profile.image = await this.awsService.uploadFile(
       file,
       AwsFolderEnum.PROFILE_IMAGES,
     );
-    profile.image = imagePath;
+
+    const newProfile = await this.repo.save(profile);
+    return newProfile;
+  }
+
+  async deleteProfileImage(profileId: number) {
+    const profile = await this.findById(profileId);
+
+    // delete the old image before uploading a new one
+    if (profile.image) await this.awsService.deleteFile(profile.image);
+    profile.image = null;
 
     const newProfile = await this.repo.save(profile);
     return newProfile;
