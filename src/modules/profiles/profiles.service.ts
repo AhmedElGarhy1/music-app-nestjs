@@ -8,8 +8,6 @@ import { Profile } from './entities/profile.entity';
 import { Repository } from 'typeorm';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
-import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-import { User } from 'aws-sdk/clients/budgets';
 import { AwsService } from 'src/common/modules/aws/aws.service';
 import { AwsFolderEnum } from 'src/common/enums/aws-folder.enum';
 
@@ -62,8 +60,11 @@ export class ProfilesService {
     const profile = await this.findById(profileId);
 
     // delete the old image before uploading a new one
-    if (profile.image) await this.awsService.deleteFile(profile.image);
-    profile.image = null;
+    if (profile.image) {
+      await this.awsService.deleteFile(profile.image);
+      profile.image = null;
+      return profile;
+    }
 
     const newProfile = await this.repo.save(profile);
     return newProfile;
