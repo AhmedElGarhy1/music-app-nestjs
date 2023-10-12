@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   ManyToOne,
   OneToMany,
@@ -13,7 +14,7 @@ import { Track } from '../../tracks/track.entity';
 import { User } from 'src/modules/auth/entities/user.entity';
 
 @Entity()
-@Unique(['name'])
+@Unique(['name', 'userId'])
 export class Playlist extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,7 +22,7 @@ export class Playlist extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @CreateDateColumn()
   createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.playlists)
