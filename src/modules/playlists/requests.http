@@ -1,16 +1,34 @@
 ### Get my playlist
 GET http://localhost:3000/playlists
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcxMjQ2ODQsImV4cCI6MTY5NzIxMTA4NH0.vGjdb0q5xpNQunr93aoObdJMLySHk7Od3734u2xpOyo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
 
 ### Create a playlist
 POST http://localhost:3000/playlists
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcxMjQ2ODQsImV4cCI6MTY5NzIxMTA4NH0.vGjdb0q5xpNQunr93aoObdJMLySHk7Od3734u2xpOyo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
 Content-Type: application/json
 
 {
-    "name": "playlist1"
+    "name": "playlist2"
+}
+
+### Add item to playlist
+POST http://localhost:3000/playlists/5/item
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
+Content-Type: application/json
+
+{
+    "songId": 1
+}
+
+### remove item from playlist
+DELETE  http://localhost:3000/playlists/5/item/11
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
+Content-Type: application/json
+
+{
+    "songId": "1"
 }
 
 ### Delete a playlist
-DELETE http://localhost:3000/playlists/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcxMjQ2ODQsImV4cCI6MTY5NzIxMTA4NH0.vGjdb0q5xpNQunr93aoObdJMLySHk7Od3734u2xpOyo
+DELETE http://localhost:3000/playlists/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY

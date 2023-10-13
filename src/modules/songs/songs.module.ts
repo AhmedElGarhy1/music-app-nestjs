@@ -9,5 +9,6 @@ import { SingerAlbumsModule } from '../singer-albums/singer-albums.module';
   imports: [TypeOrmModule.forFeature([Song]), SingerAlbumsModule],
   controllers: [SongsController],
   providers: [SongsService],
+  exports: [SongsService],
 })
-export class SongModule {}
+export class SongsModule {}

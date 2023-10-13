@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import {
   AuthModule,
-  SongModule,
+  SongsModule,
   MusicModule,
   SingerAlbumsModule,
   FavoritesModule,
@@ -22,6 +22,7 @@ import config from './config';
 import { NodemailerModule } from '@crowdlinker/nestjs-mailer';
 import { EmailModule } from './common/modules/email/email.module';
 import { UsersModule } from './modules/users/users.module';
+import { TunesModule } from './modules/tunes/tunes.module';
 
 @Module({
   imports: [
@@ -33,7 +34,7 @@ import { UsersModule } from './modules/users/users.module';
     MusiciansModule,
     FavoritesModule,
     PlaylistsModule,
-    SongModule,
+    SongsModule,
     MusicModule,
     SingerAlbumsModule,
     MusicianAlbumsModule,
@@ -43,6 +44,7 @@ import { UsersModule } from './modules/users/users.module';
     AwsModule,
     EmailModule,
     UsersModule,
+    TunesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

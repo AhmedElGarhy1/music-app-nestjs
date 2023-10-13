@@ -10,7 +10,7 @@ import {
   Unique,
 } from 'typeorm';
 import { Profile } from '../../profiles/entities/profile.entity';
-import { Track } from '../../tracks/track.entity';
+import { Track } from '../../tracks/entities/track.entity';
 import { User } from 'src/modules/auth/entities/user.entity';
 
 @Entity()

@@ -1,3 +1,16 @@
 ### Get my favorite
 GET http://localhost:3000/favorites
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcxMjQ2ODQsImV4cCI6MTY5NzIxMTA4NH0.vGjdb0q5xpNQunr93aoObdJMLySHk7Od3734u2xpOyo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
+
+### add item
+POST http://localhost:3000/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
+Content-Type: application/json
+
+{
+    "songId": 1
+}
+
+### remove item
+Delete http://localhost:3000/favorites/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY

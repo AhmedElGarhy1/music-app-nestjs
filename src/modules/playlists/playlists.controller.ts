@@ -12,12 +12,13 @@ import { PlaylistsService } from './playlists.service';
 import { Playlist } from './entities/playlist.entity';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { User } from '../users/entities/user.entity';
-import { AddPlaylistItemDto } from './dto/add-playlist-item.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { RoleEnum } from 'src/common/enums/role.enum';
 import { CreatePlaylistDto } from './dto/create-playlist.dto';
+import { CreateTrackDto } from './dto/create-track.dto';
+import { Track } from '../tracks/entities/track.entity';
 
 @Controller('playlists')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -34,17 +35,6 @@ export class PlaylistsController {
   @Get(':id')
   async findOne(@Param('id') playlistId: number): Promise<Playlist> {
     const playlist = await this.playlistsSerive.findById(playlistId);
-    if (!playlist) throw new NotFoundException(`can't find the playlist`);
-    return playlist;
-  }
-
-  @Post(':id/item')
-  async addItem(
-    @Param('id') playlistId: number,
-    data: AddPlaylistItemDto,
-  ): Promise<Playlist> {
-    const playlist = await this.playlistsSerive.addItem(playlistId, data);
-    if (!playlist) throw new NotFoundException(`can't find the playlist`);
     return playlist;
   }
 
@@ -56,6 +46,16 @@ export class PlaylistsController {
     const playlist = await this.playlistsSerive.create(user.id, data);
     if (!playlist) throw new NotFoundException(`can't find the playlist`);
     return playlist;
+  }
+
+  @Post(':id/item')
+  async addItem(
+    @Param('id') playlistId: number,
+    @Body() data: CreateTrackDto,
+  ): Promise<Track> {
+    const track = await this.playlistsSerive.addItem(playlistId, data);
+    if (!track) throw new NotFoundException(`can't find the playlist`);
+    return track;
   }
 
   @Delete(':id')
@@ -73,7 +73,7 @@ export class PlaylistsController {
     @CurrentUser() user: User,
     @Param('id') playlistId: number,
     @Param('itemId') itemId: number,
-  ): Promise<Playlist> {
+  ): Promise<Track> {
     const playlist = await this.playlistsSerive.removeItem(playlistId, itemId);
     if (!playlist) throw new NotFoundException(`can't find the playlist`);
     return playlist;

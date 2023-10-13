@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { Favorite } from './entities/favorite.entity';
@@ -30,7 +31,7 @@ export class FavoritesController {
   }
 
   @Post()
-  async create(
+  async createItem(
     @CurrentUser() user: User,
     @Body() createFavoriteDto: CreateFavoriteDto,
   ) {
@@ -38,15 +39,14 @@ export class FavoritesController {
       user.favoriteId,
       createFavoriteDto,
     );
+    if (!favorite) throw new NotFoundException('Song/Music id not found');
     return favorite;
   }
 
-  @Delete('id')
-  async remove(@CurrentUser() user: User, @Param('id') itemId: number) {
-    const favorite = await this.favoritesService.removeFavoriteItem(
-      user.favoriteId,
-      itemId,
-    );
+  @Delete(':id')
+  async remove(@Param('id') itemId: number) {
+    const favorite = await this.favoritesService.removeFavoriteItem(itemId);
+    if (!favorite) throw new NotFoundException('Song/Music id not found');
     return favorite;
   }
 }

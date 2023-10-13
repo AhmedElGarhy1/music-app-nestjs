@@ -7,7 +7,8 @@ import { MusicianAlbumsModule } from '../musician-albums/musician-albums.module'
 
 @Module({
   imports: [TypeOrmModule.forFeature([Music]), MusicianAlbumsModule],
-  providers: [MusicService],
   controllers: [MusicController],
+  providers: [MusicService],
+  exports: [MusicService],
 })
 export class MusicModule {}
