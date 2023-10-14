@@ -26,7 +26,7 @@ Content-Type: application/json
 {
     //"username": "ahmedelgarhy1",
     "email": "gemater.g@gmail.com",
-    "password": "password1"
+    "password": "password"
 }
 
 
@@ -40,7 +40,7 @@ Content-Type: application/json
 {
     //"username": "ahmedelgarhy1",
     "email": "gemater.g@gmail.com",
-    "newPassword": "password1",
+    "newPassword": "password",
     "passwordToken": "23238"
 }
 
@@ -52,12 +52,12 @@ Content-Type: application/json
 
 # ### access-token
 # GET http://localhost:3000/auth/user-endpoint
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY1MzQwMzIsImV4cCI6MTY5NjYyMDQzMn0.FVaR-5Hq7eEwv-dBDJtl6emOoT2wsqjOgOsFI06u-bI
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
 
 # ### access-token
 # GET http://localhost:3000/auth/admin-endpoint
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY1MzQwMzIsImV4cCI6MTY5NjYyMDQzMn0.FVaR-5Hq7eEwv-dBDJtl6emOoT2wsqjOgOsFI06u-bI
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY
 
 # ### access-token
 # GET http://localhost:3000/auth/protected-endpoint
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY1MzQwMzIsImV4cCI6MTY5NjYyMDQzMn0.FVaR-5Hq7eEwv-dBDJtl6emOoT2wsqjOgOsFI06u-bI
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcyMjcyNzAsImV4cCI6MTY5NzMxMzY3MH0.j3mNJIfoA9E-J1ERVTw-TqxMxRcAPbvAwsPihITSqOY

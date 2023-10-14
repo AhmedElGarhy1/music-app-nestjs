@@ -9,7 +9,7 @@ import {
   Unique,
 } from 'typeorm';
 import { MusicianAlbum } from '../../musician-albums/entities/musician-album.entity';
-import { Track } from '../../tracks/track.entity';
+import { Track } from '../../tracks/entities/track.entity';
 
 @Entity()
 export class Music extends AbstractTune {

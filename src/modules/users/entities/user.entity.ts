@@ -63,7 +63,7 @@ export class User extends BaseEntity {
   @Column()
   profileId: number;
 
-  // forign keys
+  @Column()
   favoriteId: number;
 
   async validatePassword(password: string): Promise<boolean> {

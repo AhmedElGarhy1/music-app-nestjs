@@ -1,64 +1,81 @@
 import {
   Controller,
-  Delete,
-  Get,
-  Post,
-  Patch,
-  UseGuards,
-  Body,
   Param,
+  Get,
+  Body,
+  Delete,
+  Post,
+  UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { PlaylistsService } from './playlists.service';
-import { CreatePlaylistDto } from './dto/create-playlist.dto';
+import { Playlist } from './entities/playlist.entity';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { User } from '../users/entities/user.entity';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { RoleEnum } from 'src/common/enums/role.enum';
-import { UpdatePlaylistDto } from './dto/update-playlist.dto';
+import { CreatePlaylistDto } from './dto/create-playlist.dto';
+import { CreateTrackDto } from './dto/create-track.dto';
+import { Track } from '../tracks/entities/track.entity';
 
 @Controller('playlists')
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles(RoleEnum.USER)
 export class PlaylistsController {
-  constructor(private readonly playlistsService: PlaylistsService) {}
+  constructor(private readonly playlistsSerive: PlaylistsService) {}
+
+  @Get()
+  async findAll(@CurrentUser() user: User): Promise<Playlist[]> {
+    const playlists = await this.playlistsSerive.findAll(user.id);
+    return playlists;
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') playlistId: number): Promise<Playlist> {
+    const playlist = await this.playlistsSerive.findById(playlistId);
+    return playlist;
+  }
 
   @Post()
   async create(
     @CurrentUser() user: User,
-    @Body() playlistDto: CreatePlaylistDto,
-  ) {
-    const playlist = await this.playlistsService.create(user.id, playlistDto);
+    @Body() data: CreatePlaylistDto,
+  ): Promise<Playlist> {
+    const playlist = await this.playlistsSerive.create(user.id, data);
+    if (!playlist) throw new NotFoundException(`can't find the playlist`);
     return playlist;
   }
 
-  @Get()
-  async getAll(@CurrentUser() user: User) {
-    const playlist = await this.playlistsService.findAll(user.id);
-    return playlist;
-  }
-
-  @Get(':id')
-  async getOne(@Param('id') id: number) {
-    const playlist = await this.playlistsService.findById(id);
-    return playlist;
-  }
-
-  @Patch(':id')
-  async update(
-    @CurrentUser() user: User,
+  @Post(':id/item')
+  async addItem(
     @Param('id') playlistId: number,
-    playlistDto: UpdatePlaylistDto,
-  ) {
-    const playlist = await this.playlistsService.update(
-      user.id,
-      playlistId,
-      playlistDto,
-    );
-    return playlist;
+    @Body() data: CreateTrackDto,
+  ): Promise<Track> {
+    const track = await this.playlistsSerive.addItem(playlistId, data);
+    if (!track) throw new NotFoundException(`can't find the playlist`);
+    return track;
   }
 
   @Delete(':id')
-  async deleteOne(@CurrentUser() user: User) {}
+  async deleteOne(
+    @CurrentUser() user: User,
+    @Param('id') playlistId: number,
+  ): Promise<Playlist> {
+    const playlist = await this.playlistsSerive.deleteOne(playlistId);
+    if (!playlist) throw new NotFoundException(`can't find the playlist`);
+    return playlist;
+  }
+
+  @Delete(':id/item/:itemId')
+  async removeItem(
+    @CurrentUser() user: User,
+    @Param('id') playlistId: number,
+    @Param('itemId') itemId: number,
+  ): Promise<Track> {
+    const playlist = await this.playlistsSerive.removeItem(playlistId, itemId);
+    if (!playlist) throw new NotFoundException(`can't find the playlist`);
+    return playlist;
+  }
 }

@@ -1,5 +1,5 @@
 import { AuthModule } from './auth/auth.module';
-import { SongModule } from './songs/songs.module';
+import { SongsModule } from './songs/songs.module';
 import { MusicModule } from './music/music.module';
 import { SingerAlbumsModule } from './singer-albums/singer-albums.module';
 import { FavoritesModule } from './favorites/favorites.module';
@@ -15,7 +15,7 @@ export {
   AuthModule,
   SingerAlbumsModule,
   SingersModule,
-  SongModule,
+  SongsModule,
   MusicModule,
   FavoritesModule,
   MusicianAlbumsModule,

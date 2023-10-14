@@ -50,9 +50,7 @@ export class SongsService implements ISongsService {
   }
 
   async findById(id: number) {
-    const song = await this.repo.findOne({
-      id,
-    });
+    const song = await this.repo.findOne(id);
     if (!song) throw new NotFoundException("this song doens't exists");
 
     return song;
