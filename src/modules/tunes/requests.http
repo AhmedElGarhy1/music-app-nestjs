@@ -1,2 +1,22 @@
 ### Get all tunes
 GET http://localhost:3000/tunes/
+
+### create tune
+POST http://localhost:3000/tunes/
+Content-Type: application/json
+
+{
+    "type": "CLASSICAL",
+    "artistAlbumId": "2",
+    "name": "Soang1",
+    "description": "song1",
+    "artist": "artist1",
+    "rate": "5",
+    "source": "http://skjdfkala.com",
+    "publishedIn": "2020-10-05",
+    "language": "ENGLISH",
+    "type": "Music",
+    "musicType": "PIANO"
+}
+### Get all tunes
+GET http://localhost:3000/tunes/

@@ -6,4 +6,7 @@ export enum AwsFolderEnum {
   MUSICIAN_IMAGES = 'musician-images',
   MUSIC_IMAGES = 'music-images',
   PROFILE_IMAGES = 'profile-images',
+  ARTIST_IMAGES = 'artist-images',
+  ARTIST_ALBUM_IMAGES = 'artist-album-images',
+  TUNE_IMAGES = 'tune-images',
 }

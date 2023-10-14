@@ -2,10 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Track } from './entities/track.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Song } from '../songs/entities/song.entity';
-import { Music } from '../music/entities/music.entity';
 import { Playlist } from '../playlists/entities/playlist.entity';
 import { Favorite } from '../favorites/entities/favorite.entity';
+import { Tune } from '../tunes/entities/tune.entity';
 
 @Injectable()
 export class TracksService {
@@ -13,13 +12,13 @@ export class TracksService {
     @InjectRepository(Track) private readonly repo: Repository<Track>,
   ) {}
 
-  async pushToPlaylist(tune: Song | Music, playlist: Playlist) {
+  async pushToPlaylist(tune: Tune, playlist: Playlist) {
     const track = this.pushTune(tune);
     track.playlist = playlist;
     return await track.save();
   }
 
-  async pushToFavorite(tune: Song | Music, favorite: Favorite): Promise<Track> {
+  async pushToFavorite(tune: Tune, favorite: Favorite): Promise<Track> {
     const track = this.pushTune(tune);
     track.favorite = favorite;
     return await track.save();
@@ -38,13 +37,9 @@ export class TracksService {
     return result;
   }
 
-  pushTune(tune: Song | Music): Track {
+  pushTune(tune: Tune): Track {
     const track = this.repo.create();
-    if (tune instanceof Song) {
-      track.song = tune;
-    } else if (tune instanceof Music) {
-      track.music = tune;
-    }
+    track.tune = tune;
     track.title = tune.name;
     track.link = tune.source;
     return track;

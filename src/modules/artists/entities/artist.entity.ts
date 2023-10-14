@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-@Unique(['name'])
+@Unique(['name', 'type'])
 export class Artist extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

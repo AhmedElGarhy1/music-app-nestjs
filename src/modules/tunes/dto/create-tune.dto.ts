@@ -48,6 +48,8 @@ export class CreateTuneDto {
   @IsEnumValidator(MusicTypeEnum)
   musicType: MusicTypeEnum;
 
+  tuneType: SongTypeEnum | MusicTypeEnum;
+
   @IsNumberString()
-  singerAlbumId: number;
+  artistAlbumId: number;
 }

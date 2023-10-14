@@ -10,7 +10,6 @@ import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
 import { AwsService } from 'src/common/modules/aws/aws.service';
 import { AwsFolderEnum } from 'src/common/enums/aws-folder.enum';
-import { ArtistGroupEnum } from 'src/common/enums/artist-group.enum';
 import { ArtistEnum } from 'src/common/enums/artist-type.enum';
 
 @Injectable()
@@ -22,13 +21,13 @@ export class ArtistsService {
 
   async create(data: CreateArtistDto) {
     // check if the name is unique
-    await this.checkUniqueness(data.name);
+    await this.checkUniqueness(data.name, data.type);
 
     // upload image
     if (data.image) {
       const imagePath = await this.awsService.uploadFile(
         data.image,
-        AwsFolderEnum.MUSICIAN_IMAGES,
+        AwsFolderEnum.ARTIST_IMAGES,
       );
       data.image = imagePath;
     }
@@ -39,10 +38,15 @@ export class ArtistsService {
 
   async findAll(type?: ArtistEnum) {
     let artists: Artist[];
-    if (type) {
-      artists = await this.repo.find({ type });
-    } else {
+    if (!type) {
       artists = await this.repo.find();
+    } else {
+      if (Object.values(ArtistEnum).includes(type))
+        artists = await this.repo.find({ type });
+      else
+        throw new NotFoundException(
+          "Type is'nt of type Artist (Singer | Musician)",
+        );
     }
 
     return artists;
@@ -60,7 +64,10 @@ export class ArtistsService {
 
   async updateById(id: number, data: UpdateArtistDto) {
     const artist = await this.findById(id);
-    await this.checkUniqueness(data.name);
+    await this.checkUniqueness(
+      data.name || artist.name,
+      data.type || artist.type,
+    );
 
     if (data.image) {
       if (artist.image) {
@@ -68,7 +75,7 @@ export class ArtistsService {
       }
       const imagePath = await this.awsService.uploadFile(
         data.image,
-        AwsFolderEnum.MUSICIAN_IMAGES,
+        AwsFolderEnum.ARTIST_IMAGES,
       );
       data.image = imagePath;
     }
@@ -89,8 +96,8 @@ export class ArtistsService {
     return deletedArtist;
   }
 
-  private async checkUniqueness(name: string) {
-    const entity = await this.repo.findOne({ name });
+  private async checkUniqueness(name: string, type: ArtistEnum) {
+    const entity = await this.repo.findOne({ name, type });
     if (entity) throw new BadRequestException('this name is already exists');
   }
 }

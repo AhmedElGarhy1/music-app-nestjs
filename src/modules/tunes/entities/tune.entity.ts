@@ -1,7 +1,8 @@
 import { LanguageEnum } from 'src/common/enums/language.enum';
+import { MusicTypeEnum } from 'src/common/enums/music-type.enum';
 import { SongTypeEnum } from 'src/common/enums/song-type.enum';
+import { TuneTypeEnum } from 'src/common/enums/tune-type.enum';
 import { ArtistAlbum } from 'src/modules/artist-albums/entities/artist-album.entity';
-import { SingerAlbum } from 'src/modules/singer-albums/entities/singer-album.entity';
 import { Track } from 'src/modules/tracks/entities/track.entity';
 import {
   BaseEntity,
@@ -49,9 +50,12 @@ export class Tune extends BaseEntity {
 
   @Column({
     type: 'enum',
-    enum: SongTypeEnum,
+    enum: TuneTypeEnum,
   })
-  type: SongTypeEnum;
+  type: TuneTypeEnum;
+
+  @Column()
+  tuneType: SongTypeEnum | MusicTypeEnum;
 
   @ManyToOne(() => ArtistAlbum, (album) => album.tunes)
   @JoinColumn()
@@ -61,7 +65,7 @@ export class Tune extends BaseEntity {
   @Column()
   artistAlbumId: number;
 
-  @OneToMany(() => Track, (track) => track.song, {
+  @OneToMany(() => Track, (track) => track.tune, {
     eager: true,
   })
   tracks: Track[];

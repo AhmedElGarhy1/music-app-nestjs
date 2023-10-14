@@ -1,3 +1,4 @@
+import { TunesService } from './../tunes/tunes.service';
 import {
   Injectable,
   BadRequestException,
@@ -7,12 +8,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Playlist } from './entities/playlist.entity';
 import { CreatePlaylistDto } from './dto/create-playlist.dto';
-import { MusicService } from '../music/music.service';
-import { SongsService } from '../songs/songs.service';
 import { TracksService } from '../tracks/tracks.service';
 import { CreateTrackDto } from './dto/create-track.dto';
-import { Song } from '../songs/entities/song.entity';
-import { Music } from '../music/entities/music.entity';
 import { Track } from '../tracks/entities/track.entity';
 
 @Injectable()
@@ -20,8 +17,7 @@ export class PlaylistsService {
   constructor(
     @InjectRepository(Playlist) private readonly repo: Repository<Playlist>,
     private readonly tracksService: TracksService,
-    private readonly songsSerivce: SongsService,
-    private readonly musicService: MusicService,
+    private readonly tunesService: TunesService,
   ) {}
 
   async findAll(userId: number): Promise<Playlist[]> {
@@ -43,21 +39,14 @@ export class PlaylistsService {
   }
 
   async addItem(playlistId: number, data: CreateTrackDto): Promise<Track> {
-    let tune: Song | Music;
-    if (data.musicId) {
-      tune = await this.musicService.findById(data.musicId);
-    } else if (data.songId) {
-      tune = await this.songsSerivce.findById(data.musicId);
-    } else {
-      return null;
-    }
+    const tune = await this.tunesService.findOne(data.tuneId);
     const playlist = await this.findById(playlistId);
 
     const track = await this.tracksService.pushToPlaylist(tune, playlist);
     return track;
   }
 
-  async removeItem(ItemId: number, itemId: number): Promise<Track> {
+  async removeItem(ItemId: number): Promise<Track> {
     const track = await this.tracksService.remove(ItemId);
     return track;
   }

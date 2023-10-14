@@ -8,6 +8,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { AlbumTypeEnum } from '../enum/album-type.enum';
 @Entity()
 export class ArtistAlbum extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -21,6 +22,12 @@ export class ArtistAlbum extends BaseEntity {
 
   @ManyToOne(() => Artist, (artist) => artist.albums)
   artist: Artist;
+
+  @Column({
+    type: 'enum',
+    enum: AlbumTypeEnum,
+  })
+  type: AlbumTypeEnum;
 
   //   foregn key
   @Column()

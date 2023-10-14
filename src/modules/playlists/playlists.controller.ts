@@ -74,7 +74,7 @@ export class PlaylistsController {
     @Param('id') playlistId: number,
     @Param('itemId') itemId: number,
   ): Promise<Track> {
-    const playlist = await this.playlistsSerive.removeItem(playlistId, itemId);
+    const playlist = await this.playlistsSerive.removeItem(itemId);
     if (!playlist) throw new NotFoundException(`can't find the playlist`);
     return playlist;
   }

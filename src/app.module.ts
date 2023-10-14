@@ -5,17 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import {
   AuthModule,
-  SongsModule,
-  MusicModule,
-  SingerAlbumsModule,
   FavoritesModule,
-  MusicianAlbumsModule,
-  MusiciansModule,
   NotificationsModule,
   PlaylistsModule,
   ProfilesModule,
   TracksModule,
-  SingersModule,
 } from './modules';
 import { AwsModule } from './common/modules/aws/aws.module';
 import config from './config';
@@ -32,14 +26,8 @@ import { ArtistAlbumsModule } from './modules/artist-albums/artist-albums.module
     NodemailerModule.forRoot(config.nodemailer),
     AuthModule,
     ProfilesModule,
-    SingersModule,
-    MusiciansModule,
     FavoritesModule,
     PlaylistsModule,
-    SongsModule,
-    MusicModule,
-    SingerAlbumsModule,
-    MusicianAlbumsModule,
     NotificationsModule,
     TracksModule,
     AppModule,

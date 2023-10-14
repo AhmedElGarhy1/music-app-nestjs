@@ -4,18 +4,14 @@ import { Favorite } from './entities/favorite.entity';
 import { Repository } from 'typeorm';
 import { CreateFavoriteDto } from './dto/create-favorite.dto';
 import { TracksService } from '../tracks/tracks.service';
-import { Song } from '../songs/entities/song.entity';
-import { Music } from '../music/entities/music.entity';
-import { MusicService } from '../music/music.service';
-import { SongsService } from '../songs/songs.service';
+import { TunesService } from '../tunes/tunes.service';
 
 @Injectable()
 export class FavoritesService {
   constructor(
     @InjectRepository(Favorite) private readonly repo: Repository<Favorite>,
     private readonly tracksService: TracksService,
-    private readonly songsSerivce: SongsService,
-    private readonly musicService: MusicService,
+    private readonly tunesService: TunesService,
   ) {}
 
   async create() {
@@ -30,14 +26,7 @@ export class FavoritesService {
   }
 
   async addFavoriteItem(favoriteId: number, data: CreateFavoriteDto) {
-    let tune: Song | Music;
-    if (data.musicId) {
-      tune = await this.musicService.findById(data.musicId);
-    } else if (data.songId) {
-      tune = await this.songsSerivce.findById(data.musicId);
-    } else {
-      return null;
-    }
+    const tune = await this.tunesService.findOne(data.tuneId);
     const favorite = await this.findById(favoriteId);
 
     const track = await this.tracksService.pushToFavorite(tune, favorite);
