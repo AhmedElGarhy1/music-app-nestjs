@@ -23,6 +23,8 @@ import { NodemailerModule } from '@crowdlinker/nestjs-mailer';
 import { EmailModule } from './common/modules/email/email.module';
 import { UsersModule } from './modules/users/users.module';
 import { TunesModule } from './modules/tunes/tunes.module';
+import { ArtistsModule } from './modules/artists/artists.module';
+import { ArtistAlbumsModule } from './modules/artist-albums/artist-albums.module';
 
 @Module({
   imports: [
@@ -45,6 +47,8 @@ import { TunesModule } from './modules/tunes/tunes.module';
     EmailModule,
     UsersModule,
     TunesModule,
+    ArtistsModule,
+    ArtistAlbumsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

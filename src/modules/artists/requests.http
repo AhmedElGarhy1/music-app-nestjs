@@ -1,0 +1,21 @@
+### Get all
+GET http://localhost:3000/artists?type=Musician
+
+### Get all singers
+GET http://localhost:3000/artists
+
+### Get all musicians
+GET http://localhost:3000/artists
+
+### create one
+POST http://localhost:3000/artists
+Content-Type: application/json
+
+{
+    "name": "Musician1",
+    "info": "info",
+    "nationality": "nationality1",
+    "type": "Singer",
+    "artistGroupType": "Single",
+    "gender": "Male"
+}

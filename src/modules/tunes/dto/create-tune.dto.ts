@@ -3,6 +3,7 @@ import {
   IsNumberString,
   IsOptional,
   IsString,
+  ValidateIf,
 } from 'class-validator';
 import { IsEnumValidator } from 'src/common/decorators/validation/is-enum-validator.decorator';
 import { LanguageEnum } from 'src/common/enums/language.enum';
@@ -38,6 +39,14 @@ export class CreateTuneDto {
 
   @IsEnumValidator(TuneTypeEnum)
   type: TuneTypeEnum;
+
+  @ValidateIf((object) => object.type === TuneTypeEnum.SONG)
+  @IsEnumValidator(SongTypeEnum)
+  songType: SongTypeEnum;
+
+  @ValidateIf((object) => object.type === TuneTypeEnum.MUSIC)
+  @IsEnumValidator(MusicTypeEnum)
+  musicType: MusicTypeEnum;
 
   @IsNumberString()
   singerAlbumId: number;
