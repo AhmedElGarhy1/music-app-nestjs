@@ -8,10 +8,10 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { User } from 'src/modules/auth/entities/user.entity';
 import { GenderEnum } from 'src/common/enums/gender.enum';
 import { Favorite } from '../../favorites/entities/favorite.entity';
 import { Playlist } from '../../playlists/entities/playlist.entity';
+import { User } from 'src/modules/users/entities/user.entity';
 
 @Entity()
 @Unique(['phone'])

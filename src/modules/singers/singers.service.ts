@@ -21,7 +21,7 @@ export class SingersService implements ISingersService {
 
   async create(data: CreateSingerDto) {
     // check if the name is unique
-    await this.checkUniqeness(data.name);
+    await this.checkUniqueness(data.name);
 
     // upload image
     if (data.image) {
@@ -54,7 +54,7 @@ export class SingersService implements ISingersService {
 
   async updateById(id: number, data: UpdateSingerDto) {
     const singer = await this.findById(id);
-    await this.checkUniqeness(data.name);
+    await this.checkUniqueness(data.name);
 
     if (data.image) {
       if (singer.image) {
@@ -81,7 +81,7 @@ export class SingersService implements ISingersService {
     return deletedSinger;
   }
 
-  private async checkUniqeness(name: string) {
+  private async checkUniqueness(name: string) {
     const entity = await this.repo.findOne({ name });
     if (entity) throw new BadRequestException('this name is already exists');
   }

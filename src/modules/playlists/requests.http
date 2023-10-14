@@ -1,0 +1,18 @@
+### Create
+POST http://localhost:3000/playlists
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY5NjIxNzAsImV4cCI6MTY5NzA0ODU3MH0.ncIenl_gzgXoq07iwRX0-iIUUHFXp_0U1aRAXfbfbvo
+
+{
+    "name": "newPlaylist1"
+}
+
+### Get all
+GET http://localhost:3000/playlists
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY5NjIxNzAsImV4cCI6MTY5NzA0ODU3MH0.ncIenl_gzgXoq07iwRX0-iIUUHFXp_0U1aRAXfbfbvo
+
+### Get one
+GET http://localhost:3000/playlists/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTY5NjIxNzAsImV4cCI6MTY5NzA0ODU3MH0.ncIenl_gzgXoq07iwRX0-iIUUHFXp_0U1aRAXfbfbvo

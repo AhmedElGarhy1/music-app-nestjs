@@ -38,7 +38,7 @@ export class SongsService implements ISongsService {
       data.image = singerAlbum.image;
     }
 
-    await this.checkUniqeness(data.name, data.source);
+    await this.checkUniqueness(data.name, data.source);
 
     const song = this.repo.create(data);
     return this.repo.save(song);
@@ -65,7 +65,7 @@ export class SongsService implements ISongsService {
 
     // thorw error if not exists
     const song = await this.findById(id);
-    await this.checkUniqeness(
+    await this.checkUniqueness(
       data.name || song.name,
       data.source || song.source,
     );
@@ -96,7 +96,7 @@ export class SongsService implements ISongsService {
     return this.repo.save(deletedSong);
   }
 
-  private async checkUniqeness(name: string, source: string) {
+  private async checkUniqueness(name: string, source: string) {
     const song = await this.repo.findOne({ name, source });
     if (song)
       throw new BadRequestException(

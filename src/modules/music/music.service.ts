@@ -27,7 +27,7 @@ export class MusicService implements IMusicService {
       data.musicianAlbumId,
     );
 
-    await this.checkUniqeness(data.name, data.source);
+    await this.checkUniqueness(data.name, data.source);
 
     // upload image
     if (data.image) {
@@ -65,7 +65,7 @@ export class MusicService implements IMusicService {
 
     // thorw error if not exists
     const music = await this.findById(id);
-    await this.checkUniqeness(
+    await this.checkUniqueness(
       data.name || music.name,
       data.source || music.source,
     );
@@ -96,7 +96,7 @@ export class MusicService implements IMusicService {
     }
   }
 
-  private async checkUniqeness(name: string, source: string) {
+  private async checkUniqueness(name: string, source: string) {
     const music = await this.repo.findOne({ name, source });
     if (music)
       throw new BadRequestException(

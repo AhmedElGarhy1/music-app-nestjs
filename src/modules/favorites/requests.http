@@ -1,0 +1,3 @@
+### Get favorite list
+GET http://localhost:3000/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTcwMTA4ODEsImV4cCI6MTY5NzA5NzI4MX0.9R4TcSSmBA0OHRj2jGMqupVm3rziKT-im6r8K5fxras

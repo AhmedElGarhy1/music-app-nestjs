@@ -10,7 +10,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
-import { User } from '../auth/entities/user.entity';
+import { User } from 'src/modules/users/entities/user.entity';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { ProfilesService } from './profiles.service';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';

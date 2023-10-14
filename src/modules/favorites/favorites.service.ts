@@ -14,4 +14,13 @@ export class FavoritesService {
     const favorite = this.repo.save(favoriteInstance);
     return favorite;
   }
+
+  // async addFavoriteListItem(): Promise<Favorite> {
+
+  // }
+
+  async getFavoriteListById(favoriteId: number): Promise<Favorite> {
+    const favoriteList = await this.repo.findOne(favoriteId);
+    return favoriteList;
+  }
 }

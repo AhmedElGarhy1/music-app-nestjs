@@ -5,7 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { User } from './entities/user.entity';
+import { User } from 'src/modules/users/entities/user.entity';
 import { RoleEnum } from 'src/common/enums/role.enum';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { ProfilesService } from '../profiles/profiles.service';

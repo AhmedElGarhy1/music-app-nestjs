@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   ManyToOne,
   OneToMany,
@@ -10,10 +11,10 @@ import {
 } from 'typeorm';
 import { Profile } from '../../profiles/entities/profile.entity';
 import { Track } from '../../tracks/track.entity';
-import { User } from 'src/modules/auth/entities/user.entity';
+import { User } from 'src/modules/users/entities/user.entity';
 
 @Entity()
-@Unique(['name'])
+@Unique(['name', 'userId'])
 export class Playlist extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,7 +22,10 @@ export class Playlist extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @CreateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+  })
   createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.playlists)
