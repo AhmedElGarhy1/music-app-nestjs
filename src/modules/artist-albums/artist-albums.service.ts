@@ -13,6 +13,7 @@ import { AwsService } from 'src/common/modules/aws/aws.service';
 import { ArtistsService } from '../artists/artists.service';
 import { ArtistEnum } from 'src/common/enums/artist-type.enum';
 import { AlbumTypeEnum } from './enum/album-type.enum';
+import { valueInEnum } from 'src/common/utils/valueInEnum.util';
 
 @Injectable()
 export class ArtistAlbumsService {
@@ -54,8 +55,19 @@ export class ArtistAlbumsService {
     return await this.repo.save(artistAlbum);
   }
 
-  async findAll() {
-    const artistAlbums = await this.repo.find();
+  async findAll(type?: AlbumTypeEnum) {
+    let artistAlbums: ArtistAlbum[];
+    if (type) {
+      if (valueInEnum(type, AlbumTypeEnum))
+        artistAlbums = await this.repo.find({ type });
+      else
+        throw new NotFoundException(
+          "Type isn't of type AlbumType (SingerAlbum | MusicianAlbum)",
+        );
+    } else {
+      artistAlbums = await this.repo.find();
+    }
+
     return artistAlbums;
   }
 

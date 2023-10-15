@@ -4,20 +4,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0Z
 
 
 ### Get all singers
-GET http://localhost:3000/artist-albums?type=Singer
+GET http://localhost:3000/artist-albums?type=SingerAlbum
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczMTUyMDUsImV4cCI6MTY5NzQwMTYwNX0.2ISFG_3Ms6pazlbsDUuQ67Mk4UwrOkU_DgwsMIgFiqQ
 
 ### Get all musicians
-GET http://localhost:3000/artist-albums?type=Musician
+GET http://localhost:3000/artist-albums?type=MucicianAlbum
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczMTUyMDUsImV4cCI6MTY5NzQwMTYwNX0.2ISFG_3Ms6pazlbsDUuQ67Mk4UwrOkU_DgwsMIgFiqQ
 
 ### create one
 POST http://localhost:3000/artist-albums
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczMTUyMDUsImV4cCI6MTY5NzQwMTYwNX0.2ISFG_3Ms6pazlbsDUuQ67Mk4UwrOkU_DgwsMIgFiqQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5NzM3ODQ5NywiZXhwIjoxNjk3NDY0ODk3fQ.TqQLtPKIzks-jBa-Zafs-41njyIQ69CgFU4IXHFHae4
 
 {
-    "artistId": "2",
+    "artistId": "1",
     "name": "NewAlbum1",
     "type": "MucicianAlbum"
 }

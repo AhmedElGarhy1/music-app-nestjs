@@ -11,6 +11,7 @@ import { UpdateArtistDto } from './dto/update-artist.dto';
 import { AwsService } from 'src/common/modules/aws/aws.service';
 import { AwsFolderEnum } from 'src/common/enums/aws-folder.enum';
 import { ArtistEnum } from 'src/common/enums/artist-type.enum';
+import { valueInEnum } from 'src/common/utils/valueInEnum.util';
 
 @Injectable()
 export class ArtistsService {
@@ -41,7 +42,7 @@ export class ArtistsService {
     if (!type) {
       artists = await this.repo.find();
     } else {
-      if (Object.values(ArtistEnum).includes(type))
+      if (valueInEnum(type, ArtistEnum))
         artists = await this.repo.find({ type });
       else
         throw new NotFoundException(

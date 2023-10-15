@@ -5,12 +5,14 @@ import {
   Generated,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
 import { Playlist } from '../../playlists/entities/playlist.entity';
 import { Favorite } from '../../favorites/entities/favorite.entity';
 import { Tune } from 'src/modules/tunes/entities/tune.entity';
 
 @Entity()
+@Unique(['playlistId', 'favoriteId', 'tuneId'])
 export class Track extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

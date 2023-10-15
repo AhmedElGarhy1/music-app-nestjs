@@ -22,23 +22,25 @@ import { Track } from '../tracks/entities/track.entity';
 
 @Controller('playlists')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(RoleEnum.USER)
 export class PlaylistsController {
   constructor(private readonly playlistsSerive: PlaylistsService) {}
 
   @Get()
+  @Roles(RoleEnum.USER)
   async findAll(@CurrentUser() user: User): Promise<Playlist[]> {
     const playlists = await this.playlistsSerive.findAll(user.id);
     return playlists;
   }
 
   @Get(':id')
+  @Roles(RoleEnum.USER)
   async findOne(@Param('id') playlistId: number): Promise<Playlist> {
     const playlist = await this.playlistsSerive.findById(playlistId);
     return playlist;
   }
 
   @Post()
+  @Roles(RoleEnum.USER)
   async create(
     @CurrentUser() user: User,
     @Body() data: CreatePlaylistDto,
@@ -49,6 +51,7 @@ export class PlaylistsController {
   }
 
   @Post(':id/item')
+  @Roles(RoleEnum.USER)
   async addItem(
     @Param('id') playlistId: number,
     @Body() data: CreateTrackDto,
@@ -59,6 +62,7 @@ export class PlaylistsController {
   }
 
   @Delete(':id')
+  @Roles(RoleEnum.USER)
   async deleteOne(
     @CurrentUser() user: User,
     @Param('id') playlistId: number,

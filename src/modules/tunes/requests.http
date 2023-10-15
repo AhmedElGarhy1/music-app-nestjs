@@ -1,18 +1,21 @@
 ### Get all tunes
 GET http://localhost:3000/tunes/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5NzM3ODQ5NywiZXhwIjoxNjk3NDY0ODk3fQ.TqQLtPKIzks-jBa-Zafs-41njyIQ69CgFU4IXHFHae4
+
 
 ### create tune
 POST http://localhost:3000/tunes/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczMTUyMDUsImV4cCI6MTY5NzQwMTYwNX0.2ISFG_3Ms6pazlbsDUuQ67Mk4UwrOkU_DgwsMIgFiqQ
 
 {
     "type": "CLASSICAL",
-    "artistAlbumId": "2",
+    "artistAlbumId": "1",
     "name": "Soang1",
     "description": "song1",
     "artist": "artist1",
     "rate": "5",
-    "source": "http://skjdfkala.com",
+    "source": "http://sjjdfjkala.com",
     "publishedIn": "2020-10-05",
     "language": "ENGLISH",
     "type": "Music",

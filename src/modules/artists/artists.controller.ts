@@ -23,18 +23,10 @@ import { ArtistEnum } from 'src/common/enums/artist-type.enum';
 
 @Controller('artists')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(RoleEnum.ADMIN)
 export class ArtistsController {
   constructor(private artistsService: ArtistsService) {}
 
-  @UseInterceptors(FileInterceptor('image'))
-  @Post()
-  async create(@Body() tuneData: CreateArtistDto, @UploadedFile() image: any) {
-    tuneData.image = image;
-    const artist = await this.artistsService.create(tuneData);
-    return artist;
-  }
-
+  @Roles(RoleEnum.ADMIN, RoleEnum.USER)
   @Get()
   async getAll(@Query('type') type: ArtistEnum) {
     const artists = await this.artistsService.findAll(type);
@@ -42,14 +34,25 @@ export class ArtistsController {
   }
 
   @Get(':id')
+  @Roles(RoleEnum.ADMIN, RoleEnum.USER)
   async findOne(@Param('id') id: string) {
     const artist = await this.artistsService.findById(+id);
 
     return artist;
   }
 
+  @Post()
+  @Roles(RoleEnum.ADMIN)
   @UseInterceptors(FileInterceptor('image'))
+  async create(@Body() tuneData: CreateArtistDto, @UploadedFile() image: any) {
+    tuneData.image = image;
+    const artist = await this.artistsService.create(tuneData);
+    return artist;
+  }
+
   @Patch(':id')
+  @Roles(RoleEnum.ADMIN)
+  @UseInterceptors(FileInterceptor('image'))
   async update(
     @Param('id') id: string,
     @Body() tuneData: UpdateArtistDto,
@@ -64,6 +67,7 @@ export class ArtistsController {
   }
 
   @Delete(':id')
+  @Roles(RoleEnum.ADMIN)
   async remove(@Param('id') id: string) {
     const artist = await this.artistsService.deleteById(+id);
     return artist;

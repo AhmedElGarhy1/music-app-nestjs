@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Track } from './entities/track.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -43,5 +43,13 @@ export class TracksService {
     track.title = tune.name;
     track.link = tune.source;
     return track;
+  }
+  async checkUniqueness(
+    playlistId: number | null,
+    favoriteId: number | null,
+    tuneId: number,
+  ): Promise<void> {
+    const track = await this.repo.findOne({ playlistId, favoriteId, tuneId });
+    if (track) throw new BadRequestException('this tuneId is already exists');
   }
 }

@@ -6,13 +6,13 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "username": "ahmedelgarhy",
-    "email": "gemater.g@gmail.com",
+    "username": "admin",
+    "email": "admin@gmail.com",
     "password": "password",
     "firstName": "ahmed",
     "lastName": "elgarhy",
     "age": 15,
-    "phone": "01205175225",
+    "phone": "01205175221",
     "gender": "Male",
     "country": "Egypt",
     "city": "Zagazig",
@@ -26,6 +26,7 @@ Content-Type: application/json
 {
     //"username": "ahmedelgarhy1",
     "email": "gemater.g@gmail.com",
+    //"email": "admin@admin.com",
     "password": "password"
 }
 
