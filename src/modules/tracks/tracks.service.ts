@@ -12,7 +12,8 @@ export class TracksService {
     @InjectRepository(Track) private readonly repo: Repository<Track>,
   ) {}
 
-  async pushToPlaylist(tune: Tune, playlist: Playlist) {
+  async pushToPlaylist(playlist: playli, tuneId: number) {
+    await this.checkUniqueness(playlistId, null, tuneId);
     const track = this.pushTune(tune);
     track.playlist = playlist;
     return await track.save();
@@ -37,8 +38,9 @@ export class TracksService {
     return result;
   }
 
-  pushTune(tune: Tune): Track {
+  pushTune(tuneId: tune): Track {
     const track = this.repo.create();
+
     track.tune = tune;
     track.title = tune.name;
     track.link = tune.source;
