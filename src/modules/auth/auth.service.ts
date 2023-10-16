@@ -90,7 +90,6 @@ export class AuthService {
 
   async sendForgettenPasswordEmail(email: string) {
     const user = await this.usersService.findByEmail(email);
-    console.log(user);
     if (!user) throw new NotFoundException('email doesnt exist');
 
     await this.emailService.sendForgettenPasswordEmail(email);

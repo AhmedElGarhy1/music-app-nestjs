@@ -19,6 +19,7 @@ import { UsersModule } from './modules/users/users.module';
 import { TunesModule } from './modules/tunes/tunes.module';
 import { ArtistsModule } from './modules/artists/artists.module';
 import { ArtistAlbumsModule } from './modules/artist-albums/artist-albums.module';
+import { ChatModule } from './modules/chat/chat.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { ArtistAlbumsModule } from './modules/artist-albums/artist-albums.module
     TunesModule,
     ArtistsModule,
     ArtistAlbumsModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

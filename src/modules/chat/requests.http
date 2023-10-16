@@ -1,0 +1,29 @@
+### Create a new room
+POST http://localhost:3000/rooms
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
+
+{
+    "name": "first room ever"
+}
+
+### Update room
+PATCH http://localhost:3000/rooms/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
+
+{
+    "name": "second room ever"
+}
+
+### get all rooms
+GET http://localhost:3000/rooms
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
+
+### get all rooms
+GET http://localhost:3000/rooms/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
+
+### get all rooms
+DELETE http://localhost:3000/rooms/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A

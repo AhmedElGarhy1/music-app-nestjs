@@ -14,6 +14,7 @@ import { Auth } from '../../../common/classes/auth';
 import { Profile } from '../../profiles/entities/profile.entity';
 import { Favorite } from 'src/modules/favorites/entities/favorite.entity';
 import { Playlist } from 'src/modules/playlists/entities/playlist.entity';
+import { Message } from 'src/modules/chat/entities/message.entity';
 
 @Entity('users')
 @Unique(['username', 'email'])
@@ -54,10 +55,11 @@ export class User extends BaseEntity {
   @JoinColumn()
   favorite: Favorite;
 
-  @OneToMany(() => Playlist, (playlist) => playlist.user, {
-    eager: true,
-  })
+  @OneToMany(() => Playlist, (playlist) => playlist.user)
   playlists: Playlist[];
+
+  @OneToMany(() => Message, (message) => message.user)
+  messages: Message[];
 
   // forign keys
   @Column()
