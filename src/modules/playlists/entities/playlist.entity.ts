@@ -34,6 +34,7 @@ export class Playlist extends BaseEntity {
 
   @OneToMany(() => Track, (track) => track.playlist, {
     eager: true,
+    cascade: true,
   })
   tracks: Track[];
 }

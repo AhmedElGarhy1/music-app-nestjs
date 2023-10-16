@@ -20,17 +20,18 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
 
 @Controller('favorites')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(RoleEnum.USER)
 export class FavoritesController {
   constructor(private readonly favoritesService: FavoritesService) {}
 
   @Get()
+  @Roles(RoleEnum.USER)
   async findMine(@CurrentUser() user: User): Promise<Favorite> {
     const favorite = this.favoritesService.findById(user.favoriteId);
     return favorite;
   }
 
   @Post()
+  @Roles(RoleEnum.USER)
   async createItem(
     @CurrentUser() user: User,
     @Body() createFavoriteDto: CreateFavoriteDto,
@@ -44,6 +45,7 @@ export class FavoritesController {
   }
 
   @Delete(':id')
+  @Roles(RoleEnum.USER)
   async remove(@Param('id') itemId: number) {
     const favorite = await this.favoritesService.removeFavoriteItem(itemId);
     if (!favorite) throw new NotFoundException('Song/Music id not found');

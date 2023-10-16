@@ -17,7 +17,6 @@ export class PlaylistsService {
   constructor(
     @InjectRepository(Playlist) private readonly repo: Repository<Playlist>,
     private readonly tracksService: TracksService,
-    private readonly tunesService: TunesService,
   ) {}
 
   async findAll(userId: number): Promise<Playlist[]> {
@@ -39,10 +38,12 @@ export class PlaylistsService {
   }
 
   async addItem(playlistId: number, data: CreateTrackDto): Promise<Track> {
-    const tune = await this.tunesService.findOne(data.tuneId);
     const playlist = await this.findById(playlistId);
 
-    const track = await this.tracksService.pushToPlaylist(tune, playlist);
+    const track = await this.tracksService.pushToPlaylist(
+      playlistId,
+      data.tuneId,
+    );
     return track;
   }
 
@@ -51,8 +52,11 @@ export class PlaylistsService {
     return track;
   }
 
-  async deleteOne(playlistId: number): Promise<Playlist> {
+  async remove(playlistId: number): Promise<Playlist> {
     const playlist = await this.findById(playlistId);
+    const ids = playlist.tracks.map((track) => track.id);
+
+    this.tracksService.removeMany(ids);
     await this.repo.remove(playlist);
     return playlist;
   }

@@ -1,19 +1,23 @@
 ### Get my playlist
 GET http://localhost:3000/playlists
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczODAzNDMsImV4cCI6MTY5NzQ2Njc0M30.k1I8mZlNCbcEtKvzcRT829XURSmwJlTStblxGgES9bU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
+
+### Get a playlist
+GET http://localhost:3000/playlists/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
 
 ### Create a playlist
 POST http://localhost:3000/playlists
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczODAzNDMsImV4cCI6MTY5NzQ2Njc0M30.k1I8mZlNCbcEtKvzcRT829XURSmwJlTStblxGgES9bU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
 Content-Type: application/json
 
 {
-    "name": "playlist2"
+    "name": "playlist3"
 }
 
 ### Add item to playlist
 POST http://localhost:3000/playlists/1/item
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczODAzNDMsImV4cCI6MTY5NzQ2Njc0M30.k1I8mZlNCbcEtKvzcRT829XURSmwJlTStblxGgES9bU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
 Content-Type: application/json
 
 {
@@ -21,8 +25,8 @@ Content-Type: application/json
 }
 
 ### remove item from playlist
-DELETE  http://localhost:3000/playlists/5/item/11
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczODAzNDMsImV4cCI6MTY5NzQ2Njc0M30.k1I8mZlNCbcEtKvzcRT829XURSmwJlTStblxGgES9bU
+DELETE  http://localhost:3000/playlists/2/item/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
 Content-Type: application/json
 
 {
@@ -30,5 +34,5 @@ Content-Type: application/json
 }
 
 ### Delete a playlist
-DELETE http://localhost:3000/playlists/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdlbWF0ZXIuZ0BnbWFpbC5jb20iLCJpYXQiOjE2OTczODAzNDMsImV4cCI6MTY5NzQ2Njc0M30.k1I8mZlNCbcEtKvzcRT829XURSmwJlTStblxGgES9bU
+DELETE http://localhost:3000/playlists/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A

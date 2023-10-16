@@ -9,12 +9,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 
 ### Get all musicians
 GET http://localhost:3000/artists?type=Musician
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5NzM3ODQ5NywiZXhwIjoxNjk3NDY0ODk3fQ.TqQLtPKIzks-jBa-Zafs-41njyIQ69CgFU4IXHFHae4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
 
 ### create one
 POST http://localhost:3000/artists
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5NzM3ODQ5NywiZXhwIjoxNjk3NDY0ODk3fQ.TqQLtPKIzks-jBa-Zafs-41njyIQ69CgFU4IXHFHae4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ0NDU5MSwiZXhwIjoxNjk3NTMwOTkxfQ.5HiS36CgrOHhR3MHEikOirzWVmMVlkgKCqrV0qPvr7A
 
 {
     "name": "test3",

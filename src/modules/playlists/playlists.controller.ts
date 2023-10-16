@@ -67,12 +67,13 @@ export class PlaylistsController {
     @CurrentUser() user: User,
     @Param('id') playlistId: number,
   ): Promise<Playlist> {
-    const playlist = await this.playlistsSerive.deleteOne(playlistId);
+    const playlist = await this.playlistsSerive.remove(playlistId);
     if (!playlist) throw new NotFoundException(`can't find the playlist`);
     return playlist;
   }
 
   @Delete(':id/item/:itemId')
+  @Roles(RoleEnum.USER)
   async removeItem(
     @CurrentUser() user: User,
     @Param('id') playlistId: number,

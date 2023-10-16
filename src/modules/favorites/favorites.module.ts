@@ -7,7 +7,7 @@ import { TracksModule } from '../tracks/tracks.module';
 import { TunesModule } from '../tunes/tunes.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Favorite]), TracksModule, TunesModule],
+  imports: [TypeOrmModule.forFeature([Favorite]), TracksModule],
   providers: [FavoritesService],
   exports: [FavoritesService],
   controllers: [FavoritesController],
